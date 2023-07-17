@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addUser } from './user/userSlice'
+import { addUser, removeUser } from './user/userSlice'
 
 
 //create signup async
@@ -44,7 +44,23 @@ export const loginuser = createAsyncThunk(
     }
 )
 //create logout async
+export const logoutSession = createAsyncThunk(
+    'logout/session',
+    async( _,{ dispatch, rejectWithValue })=>{
+        const response = await fetch('/logout',{
+            method: 'DELETE'
+        })
 
+        const data = await response
+
+        if(response.ok){
+            dispatch(removeUser())
+            return
+        }
+        return rejectWithValue(data)
+
+    }
+)
 //create refresh async
 export const refreshSession = createAsyncThunk(
     'refresh/session',
@@ -124,6 +140,19 @@ const sessionSlice = createSlice({
             })
             .addCase( refreshSession.fulfilled, state => {
                 state.loggedIn = true
+                state.status = 'idle'
+                state.error = null
+            })
+            .addCase( logoutSession.pending, state => {
+                state.status = 'pending'
+                state.error = null
+            })
+            .addCase( logoutSession.rejected, (state,action) => {
+                state.status = 'idle'
+                state.error = action.payload
+            })
+            .addCase( logoutSession.fulfilled, state => {
+                state.loggedIn = false
                 state.status = 'idle'
                 state.error = null
             })

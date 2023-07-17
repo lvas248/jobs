@@ -1,6 +1,6 @@
 import './App.css';
 import Signup from './Signup';
-import { refreshSession } from './features/sessionSlice';
+import { logoutSession, refreshSession } from './features/sessionSlice';
 import Login from './login';
 import { useEffect } from 'react';
 
@@ -12,6 +12,10 @@ function App() {
   useEffect(() => {
     dispatch(refreshSession())
   }, []);
+
+  function logoutUser(){
+    dispatch(logoutSession())
+  }
 
   const user = useSelector(state => state.user)
   const session = useSelector(state => state.session)
@@ -26,6 +30,8 @@ function App() {
 
         <Signup />
         <Login />
+
+        <button onClick={logoutUser}>logout</button>
     </div>
 
   );
