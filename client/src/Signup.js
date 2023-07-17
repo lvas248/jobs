@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { signupUser } from './features/user/userSlice';
 import { useState } from 'react'
+import { signupUser } from './features/sessionSlice'
 
 function Signup() {
 

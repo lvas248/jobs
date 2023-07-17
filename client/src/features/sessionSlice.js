@@ -1,6 +1,27 @@
-import { createSlice, createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { addUser } from './user/userSlice'
 
+
+//create signup async
+export const signupUser = createAsyncThunk(
+    'signup/user',
+    async(obj, { dispatch, rejectWithValue })=>{
+        const response = await fetch('/signup',{
+            method:'POST',
+            headers: {
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify(obj)
+        })
+        const data = await response.json()
+
+        if(response.ok){
+            dispatch(addUser(data))
+            return data
+        }
+        return rejectWithValue(data)
+    }
+)
 //create login async
 export const loginuser = createAsyncThunk(
     'login/session',
@@ -25,6 +46,20 @@ export const loginuser = createAsyncThunk(
 //create logout async
 
 //create refresh async
+export const refreshSession = createAsyncThunk(
+    'refresh/session',
+    async( _,{ dispatch, rejectWithValue } )=>{
+        const response = await fetch('/me')
+
+        const data = await response.json()
+
+        if(response.ok){ 
+            dispatch(addUser(data))
+            return data
+        }
+        return rejectWithValue(data)
+    }
+)
 
 const initialState = {
     loggedIn: false,
@@ -46,6 +81,22 @@ const sessionSlice = createSlice({
     }, 
     extraReducers: ( builder ) =>{
         builder
+            .addCase(signupUser.pending, state =>{
+                state.status = 'pending'
+                state.error = null
+                state.entity = {}
+            })
+            .addCase( signupUser.rejected, (state, action) =>{
+                state.status = 'idle'
+                state.error = action.payload
+                state.entity = {}
+            })
+            .addCase( signupUser.fulfilled, (state, action) =>{
+                state.status = 'idle'
+                state.error = null
+                state.entity = action.payload
+            })
+
             .addCase( loginuser.pending, state => {
                 state.loggedIn = false
                 state.status = 'pending'
@@ -57,6 +108,21 @@ const sessionSlice = createSlice({
                 state.error = action.payload
             })
             .addCase( loginuser.fulfilled, state => {
+                state.loggedIn = true
+                state.status = 'idle'
+                state.error = null
+            })
+            .addCase( refreshSession.pending, state => {
+                state.loggedIn = false
+                state.status = 'pending'
+                state.error = null
+            })
+            .addCase( refreshSession.rejected, (state,action) => {
+                state.loggedIn = false
+                state.status = 'idle'
+                state.error = action.payload
+            })
+            .addCase( refreshSession.fulfilled, state => {
                 state.loggedIn = true
                 state.status = 'idle'
                 state.error = null

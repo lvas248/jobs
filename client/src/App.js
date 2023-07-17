@@ -1,10 +1,17 @@
 import './App.css';
 import Signup from './Signup';
+import { refreshSession } from './features/sessionSlice';
 import Login from './login';
+import { useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(refreshSession())
+  }, []);
 
   const user = useSelector(state => state.user)
   const session = useSelector(state => state.session)
