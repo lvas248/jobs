@@ -23,24 +23,7 @@ const userSlice = createSlice({
         }
 
     },
-    // extraReducers: ( builder ) => {
-    //     builder        
-            // .addCase(signupUser.pending, state =>{
-            //     state.status = 'pending'
-            //     state.error = null
-            //     state.entity = {}
-            // })
-            // .addCase( signupUser.rejected, (state, action) =>{
-            //     state.status = 'idle'
-            //     state.error = action.payload
-            //     state.entity = {}
-            // })
-            // .addCase( signupUser.fulfilled, (state, action) =>{
-            //     state.status = 'idle'
-            //     state.error = null
-            //     state.entity = action.payload
-            // })
-    // }
+
 
 })
 

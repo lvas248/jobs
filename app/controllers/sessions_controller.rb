@@ -13,6 +13,12 @@ class SessionsController < ApplicationController
   
     end
 
+    #logout
+    def destroy
+        user = User.find(session[:user_id])
+        session.delete :user_id
+        head :no_content
+      end
 
     private
 
