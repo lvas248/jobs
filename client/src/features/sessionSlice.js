@@ -104,7 +104,7 @@ const sessionSlice = createSlice({
             })
             .addCase( signupUser.rejected, (state, action) =>{
                 state.status = 'idle'
-                state.error = action.payload
+                state.error = action.payload.errors
                 state.entity = {}
             })
             .addCase( signupUser.fulfilled, (state, action) =>{
@@ -136,7 +136,7 @@ const sessionSlice = createSlice({
             .addCase( refreshSession.rejected, (state,action) => {
                 state.loggedIn = false
                 state.status = 'idle'
-                state.error = action.payload
+                // state.error = action.payload
             })
             .addCase( refreshSession.fulfilled, state => {
                 state.loggedIn = true
