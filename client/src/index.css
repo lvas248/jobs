@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-  .form{
+  Form{
     @apply flex flex-col border-2 border-black rounded-lg p-5
   }
-  .form > input {
+  input{
     @apply p-2 border-b
   }
   button{
