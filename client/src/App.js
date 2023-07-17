@@ -1,5 +1,7 @@
 import './App.css';
 import Signup from './Signup';
+import Login from './login';
+
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -16,6 +18,7 @@ function App() {
         </h1>
 
         <Signup />
+        <Login />
     </div>
 
   );
