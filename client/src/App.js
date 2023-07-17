@@ -5,8 +5,9 @@ import { useSelector } from 'react-redux';
 function App() {
 
   const user = useSelector(state => state.user)
+  const session = useSelector(state => state.session)
 
-  console.log(user)
+  console.log(user, session)
 
   return (
     <div>

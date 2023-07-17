@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { login } from "../session.Slice";
 
 export const signupUser = createAsyncThunk(
-    'singup/user',
-    async(obj, { rejectWithValue })=>{
+    'signup/user',
+    async(obj, { dispatch, rejectWithValue })=>{
         const response = await fetch('/signup',{
             method:'POST',
             headers: {
@@ -12,7 +13,10 @@ export const signupUser = createAsyncThunk(
         })
         const data = await response.json()
 
-        if(response.ok) return data
+        if(response.ok){
+            dispatch(login())
+            return data
+        }
         return rejectWithValue(data)
     }
 )
@@ -28,6 +32,16 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers:{
+        removeUser: ( state )=>{
+            state.entity = initialState
+            state.error = null
+            state.status = 'idle'
+        },
+        addUser: ( state, action )=>{
+            state.entity = action.payload
+            state.error = null
+            state.status = 'idle'
+        }
 
     },
     extraReducers: ( builder ) => {
@@ -51,4 +65,5 @@ const userSlice = createSlice({
 
 })
 
+export const { removeUser, addUser } = userSlice.actions
 export default userSlice.reducer;
