@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
         user = User.find(session[:user_id])
         session.delete :user_id
         head :no_content
-      end
+    end
 
     private
 
