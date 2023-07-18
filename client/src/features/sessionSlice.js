@@ -100,17 +100,17 @@ const sessionSlice = createSlice({
             .addCase(signupUser.pending, state =>{
                 state.status = 'pending'
                 state.error = null
-                state.entity = {}
+                state.loggedIn = false
             })
             .addCase( signupUser.rejected, (state, action) =>{
                 state.status = 'idle'
                 state.error = action.payload.errors
-                state.entity = {}
+                state.loggedIn = false
             })
-            .addCase( signupUser.fulfilled, (state, action) =>{
+            .addCase( signupUser.fulfilled, (state) =>{
                 state.status = 'idle'
                 state.error = null
-                state.entity = action.payload
+                state.loggedIn = true
             })
 
             .addCase( loginuser.pending, state => {

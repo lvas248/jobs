@@ -4,13 +4,13 @@ class User < ApplicationRecord
 
     has_secure_password
 
-    has_many :verifications
+    has_many :verifications, dependent: :destroy
     
     after_create :send_new_user_email_verif
 
     private
 
     def send_new_user_email_verif
-        #send email with verification code
+        VerificationMailer.with( user: self).verify_email.deliver_later
     end
 end

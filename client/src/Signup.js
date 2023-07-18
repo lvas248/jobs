@@ -22,7 +22,7 @@ function Signup() {
 
     function submitSignup(e){
         e.preventDefault()
-        dispatch(signupUser(signupObj))
+        dispatch(signupUser(signupObj)).then( res=> console.log(res))
     }
 
     
