@@ -22,12 +22,19 @@ function Signup() {
 
     function submitSignup(e){
         e.preventDefault()
-        dispatch(signupUser(signupObj)).then( res=> console.log(res))
+        dispatch(signupUser(signupObj)).then( res=>{
+            if(res.meta.requestStatus === 'fulfilled'){
+                alert('Please check your email for a confirmation link to complete sign up.')
+            }
+        })
+        setSignupObj({
+            email: '',
+            password: '',
+            password_confirmation: ''    
+        })
+
     }
 
-    
-
-    
     return ( 
         <form>
 
@@ -45,7 +52,7 @@ function Signup() {
                 className='bg-slate-200'
                 onClick={submitSignup}
             >sign up</button>
-        
+
         </form>
      );
 }

@@ -6,11 +6,17 @@ class User < ApplicationRecord
 
     has_many :verifications, dependent: :destroy
     
-    after_create :send_new_user_email_verif
+    after_create :create_verification
 
-    private
 
-    def send_new_user_email_verif
-        VerificationMailer.with( user: self).verify_email.deliver_later
+    def within_verification_limit?
+        self.verifications.where('created_at > ?', Time.now - 1.hours).count < 3
     end
+    
+    private
+   
+    def create_verification
+        self.verifications.create
+    end
+
 end

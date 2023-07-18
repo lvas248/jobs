@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-# signup 
+    #signup 
     def create
         user = User.create!(user_params)
         session[:user_id] = user.id        
@@ -12,6 +12,8 @@ class UsersController < ApplicationController
         user = get_user
         render json: user, status: :ok
     end
+
+ 
 
     private
 

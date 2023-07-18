@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   
 
 
+  post '/verify_email', to: 'verifications#verify_email'
+  post '/request_email_verify', to: 'verifications#request_email_verify'
 
-  resources :verifications
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
 
