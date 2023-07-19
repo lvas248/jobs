@@ -16,12 +16,12 @@ function Home() {
     dispatch(refreshSession())
   }, [dispatch]);
 
-//   function logoutUser(){
-//     dispatch(logoutSession())
-//   }
+  function logoutUser(){
+    dispatch(logoutSession()).then(res => console.log(res))
+  }
 
   const user = useSelector(state => state.user)
-  // const session = useSelector(state => state.session)
+  const session = useSelector(state => state.session)
 
   console.log(user)
 
@@ -48,11 +48,15 @@ function Home() {
              <User />
           </Route>
 
+          <Route path='/email_sent'>
+            <h1>check your email for a confirmation link to complete sign up.</h1>
+          </Route>
+
         </Switch>
         
 
 
-        {/* <button onClick={logoutUser}>logout</button> */}
+        { session?.loggedIn && <button onClick={logoutUser}>logout</button>}
     </div>
 
   );

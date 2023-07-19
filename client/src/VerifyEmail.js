@@ -1,6 +1,6 @@
 import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { submitToken, requestVerifyEmail } from './features/user/userSlice'
 
 function VerifyEmail() {
@@ -9,7 +9,6 @@ function VerifyEmail() {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const [ emailSent, setEmailSent ] = useState(false)
 
     const user = useSelector(state => state.user)
     
@@ -27,7 +26,7 @@ function VerifyEmail() {
         //create and dispatch async that fetche requests new verification
         dispatch(requestVerifyEmail()).then(res => {
             if(res.meta.requestStatus === 'fulfilled'){
-                setEmailSent(true)
+                history.push('/email_sent')
             }
         })
     }
@@ -36,7 +35,6 @@ function VerifyEmail() {
     return ( 
         <div className='grid place-content-center p-5 text-center'>
 
-            { emailSent ? <p>Email has been sent</p> : null}
             { user.status === 'pending' && 'verifying email...'}
 
             { user?.error && (

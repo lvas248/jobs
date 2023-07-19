@@ -14,15 +14,18 @@ class VerificationsController < ApplicationController
     end
 
     def request_email_verify
-        user = User.find(params[:email].presence || session[:user_id])
+       
+        user = params[:email].present? ? User.find_by_email(params[:email]) : User.find(session[:user_id])       
         if user.within_verification_limit?
             user.verifications.create
             render json: { success: 'Email Sent', status: :ok}
         else
-            render json: { error: 'Max Attempts Reached, Try again later'}, status: :unauthorized
+            render json: { error: 'Max Email Requests Reached, Try again later'}, status: :unauthorized
         end
 
     end
+
+
 
     private
 

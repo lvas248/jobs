@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { signupUser } from './features/sessionSlice'
 
 function Signup() {
@@ -7,7 +8,8 @@ function Signup() {
 
     const dispatch = useDispatch()
     const errors = useSelector( state => state.session.error)
-
+    const history = useHistory()
+     
     const [ signupObj, setSignupObj ] = useState({
         email: '',
         password: '',
@@ -24,7 +26,7 @@ function Signup() {
         e.preventDefault()
         dispatch(signupUser(signupObj)).then( res=>{
             if(res.meta.requestStatus === 'fulfilled'){
-                alert('Please check your email for a confirmation link to complete sign up.')
+                history.pushState('/email_sent')
             }
         })
         setSignupObj({

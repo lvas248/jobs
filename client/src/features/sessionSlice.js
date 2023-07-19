@@ -5,7 +5,7 @@ import { addUser, removeUser } from './user/userSlice'
 //create signup async
 export const signupUser = createAsyncThunk(
     'signup/user',
-    async(obj, { dispatch, rejectWithValue })=>{
+    async(obj, { rejectWithValue })=>{
         const response = await fetch('/signup',{
             method:'POST',
             headers: {
@@ -16,7 +16,7 @@ export const signupUser = createAsyncThunk(
         const data = await response.json()
 
         if(response.ok){
-            dispatch(addUser(data))
+
             return data
         }
         return rejectWithValue(data)

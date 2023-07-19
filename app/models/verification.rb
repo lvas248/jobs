@@ -12,7 +12,7 @@ class Verification < ApplicationRecord
   def generate_code
     self.update(
       code: SecureRandom.urlsafe_base64(32),
-      expires_at: Time.now + 10.minutes
+      expires_at: Time.now 
     )
   end
 
