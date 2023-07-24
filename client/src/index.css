@@ -7,7 +7,7 @@
     @apply flex flex-col border-2 border-black rounded-lg p-5 relative
   }
   input{
-    @apply p-2 border-b my-4 w-full
+    @apply p-2 border-b my-6 w-full
   }
   button{
     @apply p-2 w-fit m-auto rounded-full border mt-5

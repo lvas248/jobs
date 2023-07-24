@@ -1,12 +1,11 @@
 class VerificationsController < ApplicationController
 
     def verify_email
-        verification = Verification.find_by_code(params[:token])
-        if verification.not_expired?
-            user = verification.user
-            user.update(email_verified: true)
-            session[:user_id] = user.id
-            render json: user, status: :ok
+        verification = Verification.find_by_code!(params[:token])
+        if verification.not_expired
+            verification.user.update!(email_verified: true)
+            session[:user_id] = verification.user.id
+            render json: verification.user, status: :ok
         else
             render json: { error: 'Token has expired.'}, status: :unprocessable_entity
         end
@@ -17,12 +16,19 @@ class VerificationsController < ApplicationController
        
         user = params[:email].present? ? User.find_by_email(params[:email]) : User.find(session[:user_id])       
         if user.within_verification_limit?
-            user.verifications.create
+            v = user.verifications.create
+            v.send_email_verification
             render json: { success: 'Email Sent', status: :ok}
         else
             render json: { error: 'Max Email Requests Reached, Try again later'}, status: :unauthorized
         end
 
+    end
+
+    def password_reset_request
+        user = User.find_by_email!(params[:email])
+        user.verifications.create.send_password_reset_verification
+        render json: { success: 'Password Reset Link has been sent.'}, status: :ok
     end
 
 

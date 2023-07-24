@@ -1,7 +1,8 @@
 import Signup from './Signup';
 import Login from './login';
-import VerifyEmail from './VerifyEmail';
 import User from './User'
+import PasswordResetForm from './PasswordResetForm'
+import PasswordResetRequest from './PasswordResetRequest'
 
 import { logoutSession, refreshSession } from './features/sessionSlice';
 import { useEffect } from 'react';
@@ -14,6 +15,7 @@ function Home() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(refreshSession())
+    // .then(res => console.log(res))
   }, [dispatch]);
 
   function logoutUser(){
@@ -23,16 +25,29 @@ function Home() {
   const user = useSelector(state => state.user)
   const session = useSelector(state => state.session)
 
-  console.log(user)
+  console.log(user,session)
 
   return (
     <div>
         <h1 className="text-3xl font-bold bg-slate-500 ">
           Hello world!
         </h1>
+
         <Switch>
 
-          <Route exact path='/'>
+          <Route  path='/forgot_password'>
+             <PasswordResetRequest />
+          </Route>
+
+          <Route exact path='/password_reset/token/:token'>
+            <PasswordResetForm />
+          </Route>
+
+          <Route path='/email_sent'>
+            <h1>check your email for a confirmation link to complete sign up.</h1>
+          </Route>
+
+          <Route path='/login'>
             <Login />
           </Route>
 
@@ -40,16 +55,8 @@ function Home() {
             <Signup />
           </Route>
 
-          <Route  path='/email_verification/token/:token'>
-             <VerifyEmail />
-          </Route>
-
-          <Route  path='/user'>
+          <Route path='/user'>
              <User />
-          </Route>
-
-          <Route path='/email_sent'>
-            <h1>check your email for a confirmation link to complete sign up.</h1>
           </Route>
 
         </Switch>

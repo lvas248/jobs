@@ -15,6 +15,17 @@ class UsersController < ApplicationController
         render json: user, status: :ok
     end
 
+    #reset password
+    def update_password
+        verification = Verification.find_by_code!(params[:token])
+        if verification.not_expired
+            verification.user.update!( user_params )
+            render json: { success: 'Password Updated'}, status: :ok
+        else
+            render json: { errors: 'Password reset link has expired.'}, status: :unprocessable_entity
+        end
+    end
+
  
 
     private

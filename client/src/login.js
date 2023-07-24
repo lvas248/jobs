@@ -1,8 +1,9 @@
-import {  useState } from 'react'
+import {  useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { loginuser } from './features/sessionSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { requestVerifyEmail } from './features/user/userSlice'
+import { resetErrors } from './features/sessionSlice'
 
 function Login() {
 
@@ -11,12 +12,15 @@ function Login() {
     const userError = useSelector( state => state.user.error)
     const history = useHistory()
   
-    console.log(userError)
 
     const [ loginObj, setLoginObj ] = useState({
         email: '',
         password: ''
     })
+
+    function navigateTo(path){
+        history.push(`/`+path)
+    }
 
     function updateLoginObj(e){
         const copy = {...loginObj}
@@ -26,13 +30,15 @@ function Login() {
 
     function submitLoginObj(e){
         e.preventDefault()
-        dispatch(loginuser(loginObj))
+        dispatch(loginuser(loginObj)).then( res =>{
+            if(res.meta.requestStatus === 'fulfilled') navigateTo('user')
+        })
     }
 
     function requestEmailVerif(){
         dispatch(requestVerifyEmail({email: loginObj.email})).then(res => {
             console.log(res)
-            if(res.meta.requestStatus === 'fulfilled') history.push('/email_sent')
+            if(res.meta.requestStatus === 'fulfilled') navigateTo('email_sent')
         })
     }
 
@@ -41,21 +47,22 @@ function Login() {
             <form onSubmit={submitLoginObj}>
                 
                 <input type='text' placeholder='email' name='email' value={loginObj.username} onChange={updateLoginObj}  />
+
                 <p className='error'>{errors?.email}</p>
+
                 <input type='password' placeholder='password' name='password' value={loginObj.password} onChange={updateLoginObj}  />
             
                 <p className='error'>{errors?.error}</p>
 
+                <div><button onClick={()=>navigateTo('forgot_password')} type='button' className='border-none text-sm text-blue-700 underline'>forgot password</button></div>
+
                 <button className='bg-slate-200'>login</button>
-
-
-                
 
                 { errors?.email ? (
                     <div className=''>
-                        <button onClick={requestEmailVerif} type='button' className='border font-bold rounded p-[2px]'>VERIFY EMAIL</button>
+                        <button type='button' onClick={requestEmailVerif}  className='border font-bold rounded p-[2px]'>VERIFY EMAIL</button>
                         <p className='error'>{userError?.error}</p>
-                    </div>) : <p>New? Signup <button className='border font-bold rounded p-[2px]'>here</button></p>
+                    </div>) : <p>New? Signup <button onClick={()=>navigateTo('signup')} type='button' className='border font-bold rounded p-[2px]'>here</button></p>
 }                
             </form> 
         );

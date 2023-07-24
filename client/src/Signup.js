@@ -1,20 +1,30 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { signupUser } from './features/sessionSlice'
+import { signupUser, resetErrors } from './features/sessionSlice'
 
 function Signup() {
 
-
+ 
     const dispatch = useDispatch()
     const errors = useSelector( state => state.session.error)
     const history = useHistory()
-     
+
+    useEffect(()=>{
+        return ()=>{
+            dispatch(resetErrors())
+        }
+    },[dispatch, resetErrors])
+    
     const [ signupObj, setSignupObj ] = useState({
         email: '',
         password: '',
         password_confirmation: ''    
     })
+
+    function navigateTo(path){
+        history.push('./'+ path)
+    }
 
     function updateSignupObj(e){
         const copy = {...signupObj}
@@ -25,36 +35,60 @@ function Signup() {
     function submitSignup(e){
         e.preventDefault()
         dispatch(signupUser(signupObj)).then( res=>{
-            if(res.meta.requestStatus === 'fulfilled'){
-                history.pushState('/email_sent')
+            if(res.meta.requestStatus === 'fulfilled'){        
+                setSignupObj({
+                    email: '',
+                    password: '',
+                    password_confirmation: ''    
+                })
+                navigateTo('email_sent')
             }
-        })
-        setSignupObj({
-            email: '',
-            password: '',
-            password_confirmation: ''    
+            setSignupObj({...signupObj, password: '', password_confirmation: ''})
+
         })
 
+
     }
+
+    const renderPasswordErrors = errors?.password?.map( e =>{
+         return <p className='error my-1' key={e}>Password {e}</p>
+        })
+
+    const renderEmailErrors = errors?.email?.map( e =>{
+        return <p className='error my-1' key={e}>Email {e}</p>
+        })
+
+    const renderPasswordConfirmationErrors = errors?.email?.map( e =>{
+        return <p className='error my-1' key={e}>Confirmation {e}</p>
+        })
+
+
+
 
     return ( 
         <form>
 
             <input type='email' name='email' placeholder='email' value={signupObj.email} onChange={updateSignupObj}/>
             
-            <p className='error'>{errors?.email}</p>
+            { renderEmailErrors }
 
             <input type='password' name='password' placeholder='password' value={signupObj.password} onChange={updateSignupObj}/>
             
+            { renderPasswordErrors }
+
             <input type='password' name='password_confirmation' placeholder='password_confirmation' value={signupObj.password_confirmation} onChange={updateSignupObj}/>
             
-            <p className='error'>{errors?.password_confirmation}</p>
-            
+            { renderPasswordConfirmationErrors }
+
             <button
                 className='bg-slate-200'
                 onClick={submitSignup}
             >sign up</button>
 
+            <div>
+               <p>Back to <button onClick={()=>navigateTo('login')} type='button' className='border font-bold rounded p-[2px]'>Login</button></p>            
+                </div>
+         
         </form>
      );
 }

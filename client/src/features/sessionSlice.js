@@ -92,6 +92,9 @@ const sessionSlice = createSlice({
         },
         logout: ( state )=>{
             state.loggedIn = false
+        },
+        resetErrors: ( state )=>{
+            state.error = null
         }
 
     }, 
@@ -110,7 +113,7 @@ const sessionSlice = createSlice({
             .addCase( signupUser.fulfilled, (state) =>{
                 state.status = 'idle'
                 state.error = null
-                state.loggedIn = true
+                state.loggedIn = false
             })
 
             .addCase( loginuser.pending, state => {
@@ -160,5 +163,5 @@ const sessionSlice = createSlice({
     }
 })
 
-export const { login, logout } = sessionSlice.actions
+export const { login, logout, resetErrors } = sessionSlice.actions
 export default sessionSlice.reducer
