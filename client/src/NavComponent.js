@@ -1,36 +1,26 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import menu from './media-icons/menu.png'
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutSession } from './features/sessionSlice';
+
 
 function NavComponent() {
 
+    const loggedIn = useSelector(state => state.session.loggedIn)
+    const dispatch = useDispatch()
     const [ navbarToggle, setNavbarToggle ] = useState(false)
 
     function toggleMenu(){
         setNavbarToggle(!navbarToggle)
     }
+    function logoutUser(){
+        dispatch(logoutSession()).then(res => console.log(res))
+        toggleMenu()
+      }
 
     return ( 
-        // <div className=''>
 
-        //     <nav className="flex text-white fixed w-full items-center justify-between flex-wrap bg-teal-500 p-6">
-                
-        //         <h1 className='text-xl'>AppName</h1>
-
-        //         {/* <div className={`hidden sm:block`}> */}
-        //         <div className={`absolute text-black bottom-[-20px]  `}>
- 
-        //             <NavLink className='p-6 hover:underline' to='login'>Login</NavLink>
-        //             <NavLink className='p-6 hover:underline' to='signup'>Signup</NavLink>
-        //             <NavLink className='p-6 hover:underline' to='user'>User</NavLink>
-
-        //         </div>
-
-        //         <img onClick={()=> setNavbarToggle(!navbarToggle)}className='w-10 float-right block sm:hidden hover:cursor-grab' src={menu} alt='menu' />  
-
-        //     </nav>   
-
-        
         <div>
 
             <nav className=' bg-slate-200'>
@@ -41,9 +31,14 @@ function NavComponent() {
 
                     <div className='flex hidden sm:block p-6'>
     
-                        <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='login'>Login</NavLink>
-                        <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='signup'>Signup</NavLink>
                         <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='user'>User</NavLink>
+                        { loggedIn ? <NavLink onClick={logoutUser} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='login'>Logout</NavLink>: (
+                            <>
+                                <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='signup'>Signup</NavLink>
+                                <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='login'>Login</NavLink>
+                            </>
+
+                        ) }
 
                     </div>
 
@@ -53,10 +48,14 @@ function NavComponent() {
 
                 <div className={`absolute w-full z-10 flex flex-col sm:hidden ${navbarToggle ? '':'hidden'}`}>
     
-                    <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='login'>Login</NavLink>
-                    <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='signup'>Signup</NavLink>
                     <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='user'>User</NavLink>
-
+                    { loggedIn ? <NavLink onClick={logoutUser} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='login'>Logout</NavLink>: (
+                            <>
+                            <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='signup'>Signup</NavLink>
+                            <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='login'>Login</NavLink>
+                        </>
+                ) }
+                
                 </div>
                     
             </nav>

@@ -5,7 +5,7 @@ import PasswordResetForm from './PasswordResetForm'
 import PasswordResetRequest from './PasswordResetRequest'
 import NavComponent from './NavComponent';
 
-import { logoutSession, refreshSession } from './features/sessionSlice';
+import { refreshSession } from './features/sessionSlice';
 import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
@@ -19,9 +19,6 @@ function Home() {
     // .then(res => console.log(res))
   }, [dispatch]);
 
-  function logoutUser(){
-    dispatch(logoutSession()).then(res => console.log(res))
-  }
 
   const user = useSelector(state => state.user)
   const session = useSelector(state => state.session)
@@ -68,7 +65,6 @@ function Home() {
         
 
 
-        { session?.loggedIn && <button onClick={logoutUser}>logout</button>}
     </div>
 
   );
