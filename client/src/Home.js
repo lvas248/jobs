@@ -3,6 +3,7 @@ import Login from './login';
 import User from './User'
 import PasswordResetForm from './PasswordResetForm'
 import PasswordResetRequest from './PasswordResetRequest'
+import NavComponent from './NavComponent';
 
 import { logoutSession, refreshSession } from './features/sessionSlice';
 import { useEffect } from 'react';
@@ -29,37 +30,41 @@ function Home() {
 
   return (
     <div>
-        <h1 className="text-3xl font-bold bg-slate-500 ">
-          Hello world!
-        </h1>
 
-        <Switch>
+        <NavComponent />
 
-          <Route  path='/forgot_password'>
-             <PasswordResetRequest />
-          </Route>
+        <div className='py-[15vh] px-[10vw]'>
 
-          <Route exact path='/password_reset/token/:token'>
-            <PasswordResetForm />
-          </Route>
+          <Switch>
 
-          <Route path='/email_sent'>
-            <h1>check your email for a confirmation link to complete sign up.</h1>
-          </Route>
+            <Route  path='/forgot_password'>
+              <PasswordResetRequest />
+            </Route>
 
-          <Route path='/login'>
-            <Login />
-          </Route>
+            <Route exact path='/password_reset/token/:token'>
+              <PasswordResetForm />
+            </Route>
 
-          <Route path='/signup'>
-            <Signup />
-          </Route>
+            <Route path='/email_sent'>
+              <h1>check your email for a confirmation link to complete sign up.</h1>
+            </Route>
 
-          <Route path='/user'>
-             <User />
-          </Route>
+            <Route path='/login'>
+              <Login />
+            </Route>
 
-        </Switch>
+            <Route path='/signup'>
+              <Signup />
+            </Route>
+
+            <Route path='/user'>
+              <User />
+            </Route>
+
+          </Switch>
+
+        </div>
+
         
 
 
