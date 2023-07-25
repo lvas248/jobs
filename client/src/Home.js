@@ -4,21 +4,29 @@ import User from './User'
 import PasswordResetForm from './PasswordResetForm'
 import PasswordResetRequest from './PasswordResetRequest'
 import NavComponent from './NavComponent';
+import Jobs from './Jobs';
 
 import { refreshSession } from './features/sessionSlice';
 import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux';
+import { getJobs } from './features/jobsData/jobSlice'
 
 function Home() {
 
   const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getJobs())
+  },[dispatch])
+
   useEffect(() => {
     dispatch(refreshSession())
     // .then(res => console.log(res))
   }, [dispatch]);
 
+  
 
   const user = useSelector(state => state.user)
   const session = useSelector(state => state.session)
@@ -28,9 +36,9 @@ function Home() {
   return (
     <div>
 
-        <NavComponent />
+        <NavComponent className='h-[10vh]'/>
 
-        <div className='py-[15vh] px-[10vw]'>
+        <div className=' h-[90vh] overflow-auto py-2 px-[10vw]'>
 
           <Switch>
 
@@ -56,6 +64,10 @@ function Home() {
 
             <Route path='/user'>
               <User />
+            </Route>
+
+            <Route path='/jobs'>
+              <Jobs />
             </Route>
 
           </Switch>
