@@ -1,29 +1,19 @@
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
-function DetailedJobCard({formatDate}){
+function DetailedJobCard({formatDate, replaceWierdText}){
 
     const { job_id } = useParams()
     const jobs = useSelector( state => state.job?.entity)
     const job = jobs?.find( j => j.job_id === job_id)
 
-    
     function makeTextReadable(text) {
         if (!text) return '';
-      
-        const symbolsMap = {
-          'â¢': '•',
-          'â': "'",
-        };
-      
-        // Replace the weird symbols with their appropriate counterparts
-        let cleanedText = text;
-        for (const [weirdSymbol, readableSymbol] of Object.entries(symbolsMap)) {
-          cleanedText = cleanedText.split(weirdSymbol).join(readableSymbol);
-        }
+
+        const cleanedText = replaceWierdText(text)
       
         // Split the cleanedText into an array of substrings using the bullet point symbol ('•') as the separator
-        const parts = cleanedText.split('•');
+        const parts = cleanedText?.split('•');
       
         // If the first part is empty (i.e., the cleanedText started with a bullet point), remove it
         if (parts.length > 0 && parts[0].trim() === '') {
@@ -49,8 +39,10 @@ function DetailedJobCard({formatDate}){
         return sanitizedSentences;
       }
 
+    const expired = new Date(job?.post_until) < new Date()
 
-    console.log(job)
+
+
     return ( 
         <div>
 
@@ -58,10 +50,13 @@ function DetailedJobCard({formatDate}){
                 <p className='text-xs font-bold'>Job ID: {job?.job_id}</p>
                 <p className='text-xs'>Posted on: {formatDate(job?.posting_date)}</p>
                 <p className='text-xs'>Last updated: {formatDate(job?.posting_date)}</p>
-                <p className='text-xs'>Available until: {formatDate(job?.post_until)}</p>
+                <div className='flex'>
+                    <p className='text-sm'>Available until: { job?.post_until ? formatDate(job?.post_until) : 'POSITION FILLED'}</p>
+                    { expired && <p className='text-xs ml-2 font-bold text-red-500 m-auto'>EXPIRED</p>}
+                </div>
             </div>    
 
-            <h1 className='text-2xl font-bold mt-4'>{job?.business_title}</h1>
+            <h1 className='text-2xl font-bold mt-4'>{replaceWierdText(job?.business_title)}</h1>
             
             <div className='mt-8'>
                 <p className='font-bold text-lg'>Location</p>

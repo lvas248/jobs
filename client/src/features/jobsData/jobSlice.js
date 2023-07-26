@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const getJobs = createAsyncThunk(
     'fetch/jobs',
     async( _, { rejectWithValue })=>{
-        const response = await fetch('https://data.cityofnewyork.us/resource/kpav-sd4t.json',{
+        const response = await fetch('https://data.cityofnewyork.us/resource/kpav-sd4t.json?posting_type=External&$order=posting_date%20DESC',{
             method: 'GET',
             headers:{
                 "X-App-Token": process.env.REACT_APP_JOBS_ACCESS_TOKEN
@@ -11,9 +11,8 @@ export const getJobs = createAsyncThunk(
         })
         const data = await response.json()
        
-        // const sortedJobs = [...data].sort((a, b) => new Date(b.posting_date) - new Date(a.posting_date))
 
-        if(response.ok) return [...data].sort((a, b) => new Date(b.posting_date) - new Date(a.posting_date))
+        if(response.ok) return data
         return rejectWithValue(data)
     }
 )

@@ -23,20 +23,15 @@ function Home() {
 
   useEffect(() => {
     dispatch(refreshSession())
-    // .then(res => console.log(res))
   }, [dispatch]);
 
-  
-
-  const user = useSelector(state => state.user)
-  const session = useSelector(state => state.session)
 
   return (
     <div>
 
         <NavComponent className='h-[10vh]'/>
 
-        <div className=' h-[85vh] overflow-auto py-2 px-[10vw]'>
+        <div className=' h-[95vh] overflow-auto py-2 px-[10vw]'>
 
           <Switch>
 

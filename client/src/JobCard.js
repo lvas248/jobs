@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom' 
 
-function JobCard({job, formatDate}) {
+function JobCard({job, formatDate, replaceWierdText}) {
     
     const [ click, setClick] = useState(false)
     const history = useHistory()
@@ -16,7 +16,7 @@ function JobCard({job, formatDate}) {
         <div 
             onClick={navigateToDetailedCard}
             className='border p-3 hover:cursor-pointer'>
-            <h1 className='text-xl font-bold'>{job.business_title}</h1>
+            <h1 className='text-xl font-bold'>{replaceWierdText(job.business_title)}</h1>
             <p>Posted on: {formatDate(job.posting_date)}</p>
             <p className='text-sm'>Salary Range: ${job.salary_range_from} to ${job.salary_range_to}</p>
             {
