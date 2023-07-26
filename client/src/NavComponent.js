@@ -33,12 +33,12 @@ function NavComponent() {
     
                         <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/jobs'>NYC Jobs</NavLink>
 
-                        <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='user'>User</NavLink>
+                        <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/user'>User</NavLink>
 
                         { loggedIn ? <NavLink onClick={logoutUser} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='login'>Logout</NavLink>: (
                             <>
-                                <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='signup'>Signup</NavLink>
-                                <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='login'>Login</NavLink>
+                                <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/signup'>Signup</NavLink>
+                                <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/login'>Login</NavLink>
                             </>
 
                         ) }
@@ -51,13 +51,13 @@ function NavComponent() {
 
                 <div className={`absolute w-full z-10 flex flex-col sm:hidden ${navbarToggle ? '':'hidden'}`}>
     
-                    <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='jobs'>NYC Jobs</NavLink>
+                    <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/jobs'>NYC Jobs</NavLink>
 
-                    <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='user'>User</NavLink>
-                    { loggedIn ? <NavLink onClick={logoutUser} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='login'>Logout</NavLink>: (
-                            <>
-                            <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='signup'>Signup</NavLink>
-                            <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='login'>Login</NavLink>
+                    <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/user'>User</NavLink>
+                    { loggedIn ? <NavLink onClick={logoutUser} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/login'>Logout</NavLink>: (
+                        <>
+                            <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/signup'>Signup</NavLink>
+                            <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/login'>Login</NavLink>
                         </>
                 ) }
                 

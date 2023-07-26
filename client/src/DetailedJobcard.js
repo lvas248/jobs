@@ -7,7 +7,50 @@ function DetailedJobCard({formatDate}){
     const jobs = useSelector( state => state.job?.entity)
     const job = jobs?.find( j => j.job_id === job_id)
 
+    
+    function makeTextReadable(text) {
+        if (!text) return '';
+      
+        const symbolsMap = {
+          'â¢': '•',
+          'â': "'",
+        };
+      
+        // Replace the weird symbols with their appropriate counterparts
+        let cleanedText = text;
+        for (const [weirdSymbol, readableSymbol] of Object.entries(symbolsMap)) {
+          cleanedText = cleanedText.split(weirdSymbol).join(readableSymbol);
+        }
+      
+        // Split the cleanedText into an array of substrings using the bullet point symbol ('•') as the separator
+        const parts = cleanedText.split('•');
+      
+        // If the first part is empty (i.e., the cleanedText started with a bullet point), remove it
+        if (parts.length > 0 && parts[0].trim() === '') {
+          parts.shift();
+        }
+      
+        return parts.map((l, index) => {
+          // Add line breaks before each subsequent bullet point
+          if (index > 0) {
+            return <li className='text-sm m-2' key={l}>{l}</li>;
+          }
+          return <span className='text-sm m-2' key={l}>{l}</span>; // First string without bullet point
+        });
+      }
 
+    function formateNumberedText(string) {
+        const sentences = string?.split(/ (?=\d+\.)/);
+        const sanitizedSentences = sentences?.map((s) => {
+          // Replace weird symbols with a space (modify the regex as needed)
+          const sanitizedSentence = s.replace(/[^\w\s.,?!]/g, ' ');
+          return <li className='mt-2 text-sm' key={s}>{sanitizedSentence}</li>;
+        });
+        return sanitizedSentences;
+      }
+
+
+    console.log(job)
     return ( 
         <div>
 
@@ -52,7 +95,7 @@ function DetailedJobCard({formatDate}){
                 <p className='font-bold text-lg'>Description</p>
 
                 <div className='p-2'>
-                    <p className='text-sm'>{job?.job_description}</p>
+                    {makeTextReadable(job?.job_description)}
                 </div>
 
             </div>
@@ -60,18 +103,18 @@ function DetailedJobCard({formatDate}){
             <div className='mt-8'>
                 <p className='font-bold text-lg'>Minimum Qualifications:</p>
 
-                <div className='p-2'>
-                    <p className='text-sm'>{job?.minimum_qual_requirements}</p>
-                </div>
+                <ul className='p-2'>
+                    {formateNumberedText(job?.minimum_qual_requirements)}
+                </ul>
 
             </div>
 
             <div className='mt-8'>
                 <p className='font-bold text-lg'>Preferred Skills</p>
 
-                <div className='p-2'>
-                    <p className='text-sm'>{job?.preferred_skills}</p>
-                </div>
+                <ul className='p-2'>
+                    {makeTextReadable(job?.preferred_skills)}
+                </ul>
 
             </div>
 
@@ -79,7 +122,10 @@ function DetailedJobCard({formatDate}){
                 <p className='font-bold text-lg'>Additional Info:</p>
 
                 <div className='p-2'>
-                    <p className='text-sm'>{job?.additional_information}</p>
+                    <ul>
+                    { formateNumberedText(job?.additional_information)}
+                    </ul>
+                    {/* <p className='text-sm'>{job?.additional_information}</p> */}
                 </div>
 
             </div>

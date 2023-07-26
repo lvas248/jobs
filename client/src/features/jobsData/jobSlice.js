@@ -10,8 +10,10 @@ export const getJobs = createAsyncThunk(
             }
         })
         const data = await response.json()
+       
+        // const sortedJobs = [...data].sort((a, b) => new Date(b.posting_date) - new Date(a.posting_date))
 
-        if(response.ok) return data
+        if(response.ok) return [...data].sort((a, b) => new Date(b.posting_date) - new Date(a.posting_date))
         return rejectWithValue(data)
     }
 )

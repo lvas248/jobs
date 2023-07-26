@@ -3,14 +3,15 @@ import { v4 as uuidv4 } from 'uuid'
 import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom/cjs/react-router-dom.min";
 import DetailedJobCard from "./DetailedJobcard";
-
+import Filter from "./Filter";
+import { useState } from "react";
 
 function Jobs() {
 
+    const [ filterText, setFilterText ] = useState('')
+
+ 
     const jobs = useSelector(state => state.job.entity)
-    
-    const sortedJobs = [...jobs].sort((a, b) => new Date(b.posting_date) - new Date(a.posting_date))
-    console.log(sortedJobs)
  
     function formatDate(dateTimeString){
         const dateObj = new Date(dateTimeString)
@@ -21,15 +22,18 @@ function Jobs() {
 
     }
     
-    const renderJobCards = sortedJobs?.map( j =>{
+    const renderJobCards = jobs?.map( j =>{
         return <JobCard key={uuidv4()} formatDate={formatDate} job={j} />
     })
+
+    
     
     return ( 
 
         <Switch>
 
             <Route exact path='/jobs'>
+                <Filter filterText={filterText} setFilterText={setFilterText}/>
                 <div>
                     { renderJobCards }
                 </div>  
