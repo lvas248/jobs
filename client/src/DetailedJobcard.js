@@ -113,7 +113,7 @@ function DetailedJobCard({formatDate, replaceWierdText}){
 
             </div>
 
-            <div className='mt-8'>
+            <div className='my-8'>
                 <p className='font-bold text-lg'>Additional Info:</p>
 
                 <div className='p-2'>
@@ -125,14 +125,20 @@ function DetailedJobCard({formatDate, replaceWierdText}){
 
             </div>
 
-            <div className='mt-8'>
+            {/* <div className='mt-8'>
                 <p className='font-bold text-lg'>Apply</p>
 
                 <div className='p-2'>
                     <p className='text-sm'>{job?.to_apply}</p>
                 </div>
 
-            </div>
+            </div> */}
+
+         
+
+            <a className='border-2 rounded-full p-2 text-white bg-slate-400' href={`https://a127-jobs.nyc.gov/index_new.html?keyword=${job?.job_id}`}>Apply Here</a>
+                
+        
 
             
         </div> 

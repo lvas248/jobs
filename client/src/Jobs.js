@@ -74,26 +74,22 @@ function Jobs() {
         return <JobCard key={uuidv4()} formatDate={formatDate} job={j}  replaceWierdText={replaceWierdText}/>
     })
 
-
-
-    
-    
     return ( 
 
         <Switch>
 
             <Route exact path='/jobs'>
             <Filter filterText={filterText} updateFilterText={updateFilterText} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory}/>
-            <p className='text-xs text-blue-600 mb-2'>Results: {jobs?.length} jobs</p>
+            <p className='text-xs text-blue-600 pb-2 border-b-2'>Results: {jobs?.length} jobs</p>
                 
-                <div className='overflow-auto h-[75vh]'>
+                <div className='overflow-auto h-[70vh]'>
                         { renderJobCards }
                 </div>  
 
                 <div className='flex items-center'>
-                    <button className='m-auto' onClick={decrementPage}>-</button>
+                    <button className='m-auto p-2' onClick={decrementPage}>-</button>
                     <input className='w-[10vw] text-center' value={page} onChange={(e)=>setPage(e.target.value)}/>
-                    <button className='m-auto' onClick={incrementPage}>+</button>
+                    <button className='m-auto p-2' onClick={incrementPage}>+</button>
 
                 </div>
  

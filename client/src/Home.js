@@ -31,7 +31,7 @@ function Home() {
 
         <NavComponent className='h-[10vh]'/>
 
-        <div className=' h-[95vh] overflow-auto py-2 px-[10vw]'>
+        <div className=' h-[92vh] overflow-auto py-2 px-[10vw]'>
 
           <Switch>
 
