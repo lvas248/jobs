@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  patch '/saved_jobs/:id', to: 'saved_jobs#update'
   delete '/saved_jobs/:id', to: 'saved_jobs#destroy'
   post '/saved_jobs', to: 'saved_jobs#create'
   

@@ -12,6 +12,13 @@ class SavedJobsController < ApplicationController
         head :ok
     end
 
+    def update
+        user = get_user
+        saved_job = user.saved_jobs.find(params[:id])
+        saved_job.update!( applied: true )
+        render json: saved_job
+    end
+
 
     private
 
