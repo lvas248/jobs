@@ -24,6 +24,7 @@ function Jobs() {
 
     let jobs = useSelector(state => state.job.entity)
 
+
     jobs = jobs.filter( j => {
         if(selectedCategory){
              return j[selectedCategory].toLocaleLowerCase().includes(filterText.toLocaleLowerCase()) 

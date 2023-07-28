@@ -2,8 +2,14 @@ class SavedJobsController < ApplicationController
 
     def create
         user = get_user
-        saved_job = user.saved_jobs.create(job_params)
+        saved_job = user.saved_jobs.create!(job_params)
         render json: saved_job, status: :created
+    end
+
+    def destroy
+        user = get_user
+        user.saved_jobs.find(params[:id]).destroy
+        head :ok
     end
 
 

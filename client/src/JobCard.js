@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom' 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { saveJob } from './features/user/savedJobSlice'
 
 function JobCard({job}) {
@@ -7,6 +7,7 @@ function JobCard({job}) {
     const dispatch = useDispatch()
     const history = useHistory()
 
+    const savedJobs = useSelector( state => state.savedJob.entity)
     function replaceWierdText(string){
 
         if(!string) return ''
@@ -40,8 +41,10 @@ function JobCard({job}) {
     function submitJobSave(){
         dispatch(saveJob(job))
     }
-    
-    return ( 
+
+    const saved = savedJobs?.find( j => j.job_id === job.job_id)
+
+       return ( 
         <div 
 
             className='border p-2 hover:cursor-pointer relative flex flex-row  hover:bg-slate-200'>
@@ -57,8 +60,7 @@ function JobCard({job}) {
 
             <div className='w-[10%] align-middle p-none pr-1 text-right'>
 
-            
-                <button onClick={submitJobSave} className='border-none pt-none rounded-full mt-0 hover:bg-white '>➕</button>
+                <button onClick={submitJobSave} className={`border-none pt-none rounded-full mt-0 hover:bg-white ${ saved && 'hidden'}`}>➕</button>
 
             </div>
 

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-
+  delete '/saved_jobs/:id', to: 'saved_jobs#destroy'
   post '/saved_jobs', to: 'saved_jobs#create'
   
   post '/verify_email', to: 'verifications#verify_email'
