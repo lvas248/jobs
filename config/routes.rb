@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
 
 
+  resources :saved_jobs
   post '/verify_email', to: 'verifications#verify_email'
   post '/request_email_verify', to: 'verifications#request_email_verify'
   post '/password_reset_request', to: 'verifications#password_reset_request'

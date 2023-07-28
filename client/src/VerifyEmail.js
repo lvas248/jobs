@@ -20,7 +20,7 @@ function VerifyEmail() {
                 history.push('/user')
             }
         })
-    }, [dispatch,token]);
+    }, [dispatch,token, history]);
 
     function requestVerificationEmail(){
         //create and dispatch async that fetche requests new verification

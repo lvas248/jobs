@@ -10,7 +10,7 @@ import { refreshSession } from './features/sessionSlice';
 import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getJobs } from './features/jobsData/jobSlice'
 
 function Home() {

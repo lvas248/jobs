@@ -14,7 +14,7 @@ function Signup() {
         return ()=>{
             dispatch(resetErrors())
         }
-    },[dispatch, resetErrors])
+    },[dispatch])
     
     const [ signupObj, setSignupObj ] = useState({
         email: '',

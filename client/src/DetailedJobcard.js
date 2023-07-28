@@ -44,7 +44,7 @@ function DetailedJobCard({formatDate, replaceWierdText}){
 
 
     return ( 
-        <div>
+        <div className='py-6'>
 
             <div className='grid grid-col sm:grid-cols-2 gap-1'>
                 <p className='text-xs font-bold'>Job ID: {job?.job_id}</p>
@@ -94,6 +94,17 @@ function DetailedJobCard({formatDate, replaceWierdText}){
                 </div>
 
             </div>
+
+            <div className='mt-8'>
+                <p className='font-bold text-lg'>Residency Requirements</p>
+
+                <div className='p-2'>
+                    {makeTextReadable(job?.residency_requirement)}
+                </div>
+
+            </div>
+
+
 
             <div className='mt-8'>
                 <p className='font-bold text-lg'>Minimum Qualifications:</p>

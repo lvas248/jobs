@@ -1,9 +1,8 @@
-import {  useState, useEffect } from 'react'
+import {  useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { loginuser } from './features/sessionSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { requestVerifyEmail } from './features/user/userSlice'
-import { resetErrors } from './features/sessionSlice'
 
 function Login() {
 

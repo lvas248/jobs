@@ -8,6 +8,7 @@ class User < ApplicationRecord
     has_secure_password
 
     has_many :verifications, dependent: :destroy
+    has_many :saved_jobs, dependent: :destroy
     
     after_create :create_and_email_verification
 

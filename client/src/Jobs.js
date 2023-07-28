@@ -26,7 +26,9 @@ function Jobs() {
 
     jobs = jobs.filter( j => {
         if(selectedCategory){
-             return j[selectedCategory].toLocaleLowerCase().includes(filterText.toLocaleLowerCase()) }
+             return j[selectedCategory].toLocaleLowerCase().includes(filterText.toLocaleLowerCase()) 
+        } 
+        return false
     } )
  
     function formatDate(dateTimeString){
