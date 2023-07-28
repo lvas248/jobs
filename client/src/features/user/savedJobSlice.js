@@ -19,6 +19,19 @@ export const saveJob = createAsyncThunk(
     }
 )
 
+export const deleteSavedJob = createAsyncThunk(
+    'delete/job',
+    async( obj, { rejectWithValue })=>{
+        const response = await fetch(`/saved_jobs/${obj}`,{
+            method: 'DELETE'
+        })
+        const data = await response
+
+        if(response.ok) return obj
+        return rejectWithValue(data)
+    }
+)
+
 const initialState = {
     entity: [],
     status: 'idle',
@@ -50,6 +63,19 @@ const savedJobSlice = createSlice({
                 state.status = 'idle'
                 state.error = null
                 state.entity = [action.payload, ...state.entity]
+            })
+            .addCase( deleteSavedJob.pending, state =>{
+                state.status = 'pending'
+                state.error = null
+            })
+            .addCase( deleteSavedJob.rejected, (state,action) =>{
+                state.status = 'idle'
+                state.error = action.payload
+            })
+            .addCase( deleteSavedJob.fulfilled, (state, action) =>{
+                state.status = 'idle'
+                state.error = null
+                state.entity = state.entity.filter( j => j.id !== action.payload)
             })
     }
 })

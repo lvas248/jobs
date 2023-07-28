@@ -1,16 +1,19 @@
 import JobCard from "./JobCard";
 import { useState } from 'react'
+import { deleteSavedJob } from "./features/user/savedJobSlice";
+import { useDispatch } from 'react-redux'
 
 function SavedJobCard({ job }) {
 
     const [ remove, setRemove ] = useState(false)
+    const dispatch = useDispatch()
 
     function switchRemove(){
         setRemove(!remove)
     }
 
     function removeJobPost(){
-        console.log('removed')
+        dispatch(deleteSavedJob(job.id))
     }
 
     return ( 
