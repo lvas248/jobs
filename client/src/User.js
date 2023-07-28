@@ -1,15 +1,23 @@
 import { useSelector } from "react-redux";
+import JobCard from "./JobCard";
 
 function User() {
 
-    const state = useSelector( state => state.session)
-    const user = useSelector( state => state.user)
+    const savedJobs = useSelector( state => state.savedJob.entity)
 
-    console.log(state, user)
+    const renderSavedJobs = savedJobs?.map( j => {
+        return <JobCard key={j.id} job={j} />
+    })
+
+    console.log(savedJobs)
+
     return ( 
     <div>
-        'Success'
-    </div>  );
+        <h1>Saved Jobs</h1>
+
+        { renderSavedJobs }
+    </div>  
+    );
 }
 
 export default User;

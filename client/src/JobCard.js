@@ -1,11 +1,44 @@
 import { useHistory } from 'react-router-dom' 
+import { useDispatch } from 'react-redux'
+import { saveJob } from './features/user/savedJobSlice'
 
-function JobCard({job, formatDate, replaceWierdText}) {
+function JobCard({job}) {
     
+    const dispatch = useDispatch()
     const history = useHistory()
+
+    function replaceWierdText(string){
+
+        if(!string) return ''
+
+        const symbolsMap = {
+            'â¢': '•',
+            'â': "'",
+          };
+        
+          // Replace the weird symbols with their appropriate counterparts
+          let cleanedText = string;
+          for (const [weirdSymbol, readableSymbol] of Object.entries(symbolsMap)) {
+            cleanedText = cleanedText.split(weirdSymbol).join(readableSymbol);
+          }
+          return cleanedText
+    }
+
+    function formatDate(dateTimeString){
+        const dateObj = new Date(dateTimeString)
+        const month = dateObj.toLocaleString('default', {month: 'long'})
+        const day = dateObj.getDate();
+        const year = dateObj.getFullYear()
+        return `${month} ${day}, ${year}`
+
+    }
 
     function navigateToDetailedCard(){
         history.push(`/jobs/${job.job_id}`)
+    }
+
+    function submitJobSave(){
+        dispatch(saveJob(job))
     }
     
     return ( 
@@ -24,7 +57,8 @@ function JobCard({job, formatDate, replaceWierdText}) {
 
             <div className='w-[10%] align-middle p-none pr-1 text-right'>
 
-                <button onClick={()=>console.log('clicked')} className='border-none pt-none rounded-full mt-0 hover:bg-white '>➕</button>
+            
+                <button onClick={submitJobSave} className='border-none pt-none rounded-full mt-0 hover:bg-white '>➕</button>
 
             </div>
 

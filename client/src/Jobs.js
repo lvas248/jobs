@@ -31,14 +31,6 @@ function Jobs() {
         return false
     } )
  
-    function formatDate(dateTimeString){
-        const dateObj = new Date(dateTimeString)
-        const month = dateObj.toLocaleString('default', {month: 'long'})
-        const day = dateObj.getDate();
-        const year = dateObj.getFullYear()
-        return `${month} ${day}, ${year}`
-
-    }
 
     function incrementPage(){
         if(jobs.length/50 - 1   > page){
@@ -52,28 +44,13 @@ function Jobs() {
             }
     }
 
-    function replaceWierdText(string){
 
-        if(!string) return ''
-
-        const symbolsMap = {
-            'â¢': '•',
-            'â': "'",
-          };
-        
-          // Replace the weird symbols with their appropriate counterparts
-          let cleanedText = string;
-          for (const [weirdSymbol, readableSymbol] of Object.entries(symbolsMap)) {
-            cleanedText = cleanedText.split(weirdSymbol).join(readableSymbol);
-          }
-          return cleanedText
-    }
 
     const indexFrom = page === 1 ? 0 : page * 50
     const indexTo = (page+1) * 50
 
     const renderJobCards = jobs?.slice(indexFrom,indexTo).map( j =>{
-        return <JobCard key={uuidv4()} formatDate={formatDate} job={j}  replaceWierdText={replaceWierdText}/>
+        return <JobCard key={uuidv4()}  job={j} />
     })
 
     return ( 
@@ -98,7 +75,7 @@ function Jobs() {
             </Route>
 
             <Route path='/jobs/:job_id'>
-                <DetailedJobCard formatDate={formatDate} replaceWierdText={replaceWierdText}/>
+                <DetailedJobCard />
             </Route>
 
         </Switch>

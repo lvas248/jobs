@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { addUser, removeUser } from './user/userSlice'
+import { loadSavedJobs, removeSavedJobs } from "./user/savedJobSlice";
 
 
 //create signup async
@@ -37,7 +38,13 @@ export const loginuser = createAsyncThunk(
         const data = await response.json()
 
         if(response.ok){ 
-            dispatch(addUser(data))
+            
+            const { username, email, email_verified, saved_jobs } = data
+            
+            dispatch(addUser({ username, email, email_verified}))
+
+            dispatch(loadSavedJobs(saved_jobs))
+            
             return data
         }
         return rejectWithValue(data)
@@ -55,6 +62,7 @@ export const logoutSession = createAsyncThunk(
 
         if(response.ok){
             dispatch(removeUser())
+            dispatch(removeSavedJobs())
             return
         }
         return rejectWithValue(data)
@@ -70,7 +78,13 @@ export const refreshSession = createAsyncThunk(
         const data = await response.json()
 
         if(response.ok){ 
-            dispatch(addUser(data))
+
+            const { username, email, email_verified, saved_jobs } = data
+            
+            dispatch(addUser({ username, email, email_verified}))
+
+            dispatch(loadSavedJobs(saved_jobs))
+
             return data
         }
         return rejectWithValue(data)

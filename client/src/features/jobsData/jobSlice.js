@@ -38,7 +38,7 @@ const jobSlice = createSlice({
                 state.error = action.payload
             })
             .addCase( getJobs.fulfilled, (state,action)=>{
-                state.status = 'pending'
+                state.status = 'idle'
                 state.error = null
                 state.entity = action.payload
             })

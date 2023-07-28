@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
-function DetailedJobCard({formatDate, replaceWierdText}){
+function DetailedJobCard(){
 
     const { job_id } = useParams()
     const jobs = useSelector( state => state.job?.entity)
@@ -38,7 +38,32 @@ function DetailedJobCard({formatDate, replaceWierdText}){
         });
         return sanitizedSentences;
       }
+      
+    function formatDate(dateTimeString){
+        const dateObj = new Date(dateTimeString)
+        const month = dateObj.toLocaleString('default', {month: 'long'})
+        const day = dateObj.getDate();
+        const year = dateObj.getFullYear()
+        return `${month} ${day}, ${year}`
 
+    }
+
+    function replaceWierdText(string){
+
+        if(!string) return ''
+
+        const symbolsMap = {
+            'â¢': '•',
+            'â': "'",
+          };
+        
+          // Replace the weird symbols with their appropriate counterparts
+          let cleanedText = string;
+          for (const [weirdSymbol, readableSymbol] of Object.entries(symbolsMap)) {
+            cleanedText = cleanedText.split(weirdSymbol).join(readableSymbol);
+          }
+          return cleanedText
+    }
     const expired = new Date(job?.post_until) < new Date()
 
 

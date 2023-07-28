@@ -1,4 +1,5 @@
 require "active_support/core_ext/integer/time"
+require 'dotenv/load'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -120,7 +121,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    user_name:            'lvas248.dev@gmail.com',
+    user_name:            ENV['EMAIL_ADDRESS'],
     password:             'qmbnefcqyxkpsmqy',
     authentication:       'plain',
     enable_starttls_auto: true,
