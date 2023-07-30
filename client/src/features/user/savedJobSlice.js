@@ -32,6 +32,20 @@ export const deleteSavedJob = createAsyncThunk(
     }
 )
 
+export const updateSavedJob = createAsyncThunk(
+    'udpate/job',
+    async( obj, { rejectWithValue })=>{
+        const response = await fetch(`/saved_jobs/${obj}`,{
+            method: 'PATCH'
+        })
+
+        const data = await response.json()
+
+        if(response.ok) return data
+        return rejectWithValue(data)
+    }
+)
+
 const initialState = {
     entity: [],
     status: 'idle',
@@ -77,6 +91,24 @@ const savedJobSlice = createSlice({
                 state.error = null
                 state.entity = state.entity.filter( j => j.id !== action.payload)
             })
+            .addCase( updateSavedJob.pending, state =>{
+                state.status = 'pending'
+                state.error = null
+            })
+            .addCase( updateSavedJob.rejected, ( state, action ) =>{
+                state.status = 'idle'
+                state.error = action.payload
+            })
+            .addCase( updateSavedJob.fulfilled, ( state, action ) =>{
+                state.status = 'idle'
+                state.error = null
+                state.entity = state.entity.map( j =>{
+                    if(j.id === action.payload.id) return action.payload
+                    else return j
+                })
+            })
+            
+
     }
 })
 

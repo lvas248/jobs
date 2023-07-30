@@ -13,7 +13,7 @@ function User() {
 
     return ( 
     <div>
-        <h1>Saved Jobs</h1>
+        <h1>My Saved Jobs</h1>
         {renderSavedJobs}
 
     </div>  

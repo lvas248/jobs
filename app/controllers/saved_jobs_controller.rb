@@ -1,5 +1,7 @@
 class SavedJobsController < ApplicationController
 
+    before_action :authorize
+
     def create
         user = get_user
         saved_job = user.saved_jobs.create!(job_params)
@@ -15,7 +17,7 @@ class SavedJobsController < ApplicationController
     def update
         user = get_user
         saved_job = user.saved_jobs.find(params[:id])
-        saved_job.update!( applied: true )
+        saved_job.update!( applied: !saved_job.applied )
         render json: saved_job
     end
 
@@ -28,6 +30,12 @@ class SavedJobsController < ApplicationController
 
     def get_user
         User.find(session[:user_id])
+    end
+
+    def authorize
+        unless (session.include? :user_id) 
+            return render json: { error: 'Log in to save job'}, status: :unauthorized
+        end
     end
 
 

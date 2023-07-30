@@ -6,8 +6,12 @@ function JobCard({job}) {
     
     const dispatch = useDispatch()
     const history = useHistory()
-
+    
+    const loggedIn = useSelector( state => state.session.loggedIn)
     const savedJobs = useSelector( state => state.savedJob.entity)
+
+    console.log(loggedIn)
+
     function replaceWierdText(string){
 
         if(!string) return ''
@@ -45,26 +49,30 @@ function JobCard({job}) {
     const saved = savedJobs?.find( j => j.job_id === job.job_id)
 
        return ( 
-        <div 
+            <div 
 
-            className='border p-2 hover:cursor-pointer relative flex flex-row  hover:bg-slate-200'>
+                className={`border p-2 hover:cursor-pointer relative flex flex-row  hover:border-yellow-300  hover:border-1 shadow hover:bg-slate-100`}>
+                
+                <div onClick={navigateToDetailedCard} className='hover:cursor-pointer w-[90%]'>
+
+                    <h1 className='sm:text-xl font-bold'>{job.civil_service_title}</h1>
+                    <p className='font-semibold text-slate-600'>{replaceWierdText(job.business_title)}</p>
+                    <p className='text-xs sm:text-sm'>Posted on: {formatDate(job.posting_date)}</p>
+                    <p className='text-xs sm:text-sm'>Salary Range: ${job.salary_range_from} to ${job.salary_range_to}</p>
             
-            <div onClick={navigateToDetailedCard} className='hover:cursor-pointer w-[90%]'>
+                </div>
 
-                <h1 className='sm:text-xl font-bold'>{job.civil_service_title}</h1>
-                <p className='font-semibold text-slate-600'>{replaceWierdText(job.business_title)}</p>
-                <p className='text-xs sm:text-sm'>Posted on: {formatDate(job.posting_date)}</p>
-                <p className='text-xs sm:text-sm'>Salary Range: ${job.salary_range_from} to ${job.salary_range_to}</p>
-        
-            </div>
+                <div className='w-[10%] align-middle p-none pr-1 text-right'>
 
-            <div className='w-[10%] align-middle p-none pr-1 text-right'>
+                    { saved ? (
+                        <p className='text-xs text-green-600'>saved</p>
+                    ) : (
+                        <button onClick={submitJobSave} className={`border-none pt-none rounded-full mt-0 hover:bg-white ${!loggedIn && 'hidden'}`}>➕</button>
+                    ) }
+                </div>
 
-                <button onClick={submitJobSave} className={`border-none pt-none rounded-full mt-0 hover:bg-white ${ saved && 'hidden'}`}>➕</button>
 
-            </div>
-
-        </div> 
+            </div> 
         );
 }
 

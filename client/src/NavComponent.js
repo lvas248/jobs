@@ -9,6 +9,7 @@ function NavComponent() {
 
     const loggedIn = useSelector(state => state.session.loggedIn)
     const dispatch = useDispatch()
+
     const [ navbarToggle, setNavbarToggle ] = useState(false)
 
     function toggleMenu(){
@@ -37,7 +38,7 @@ function NavComponent() {
 
                         { loggedIn ? <NavLink onClick={logoutUser} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='login'>Logout</NavLink>: (
                             <>
-                                <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/signup'>Signup</NavLink>
+                                {/* <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/signup'>Signup</NavLink> */}
                                 <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/login'>Login</NavLink>
                             </>
 
@@ -56,7 +57,7 @@ function NavComponent() {
                     <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/user'>User</NavLink>
                     { loggedIn ? <NavLink onClick={logoutUser} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/login'>Logout</NavLink>: (
                         <>
-                            <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/signup'>Signup</NavLink>
+                            {/* <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/signup'>Signup</NavLink> */}
                             <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/login'>Login</NavLink>
                         </>
                 ) }

@@ -10,12 +10,14 @@ function Filter({filterText, updateFilterText, selectedCategory, updateSelectedC
 
     return ( 
         <div className='h-[8vh] flex flex-row z-10 gap-10'>
+
             <select
                 value={selectedCategory}
                 onChange={updateSelectedCategory}
             >
                 {renderOptions}
             </select>
+            
             <input className='w-[40vw]' type='text' placeholder='Search' value={filterText} onChange={updateFilterText} />
             
         </div>

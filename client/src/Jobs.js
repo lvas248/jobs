@@ -10,6 +10,7 @@ function Jobs() {
 
     const [ filterText, setFilterText ] = useState('')
     const [ selectedCategory, setSelectedCategory ] = useState('business_title')
+    const loggedIn = useSelector(state => state.session.loggedIn)
     const [ page, setPage ] = useState(1)
 
  
@@ -60,7 +61,11 @@ function Jobs() {
 
             <Route exact path='/jobs'>
             <Filter filterText={filterText} updateFilterText={updateFilterText} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory}/>
-            <p className='text-xs text-blue-600 pb-2 border-b-2'>Results: {jobs?.length} jobs</p>
+            
+            <div className='pb-2 border-b-2 grid grid-cols-2'>
+                <p className='text-xs text-blue-600'>Results: {jobs?.length} jobs</p>
+               { !loggedIn && <p className="text-xs text-red-500 text-right">Log in to save jobs</p>}
+            </div>
                 
                 <div className='overflow-auto h-[70vh]'>
                         { renderJobCards }
