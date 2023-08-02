@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
     def destroy
         user = User.find(session[:user_id])
         session.delete :user_id
+        # binding.pry
         head :no_content
     end
 

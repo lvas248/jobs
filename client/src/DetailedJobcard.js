@@ -69,7 +69,7 @@ function DetailedJobCard(){
 
 
     return ( 
-        <div className='py-6'>
+        <div className='py-8'>
 
             <div className='grid grid-col sm:grid-cols-2 gap-1'>
                 <p className='text-xs font-bold'>Job ID: {job?.job_id}</p>

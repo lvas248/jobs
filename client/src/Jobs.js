@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom/cjs/react-router-dom.min";
 import DetailedJobCard from "./DetailedJobcard";
 import Filter from "./Filter";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function Jobs() {
 
@@ -12,7 +12,7 @@ function Jobs() {
     const [ selectedCategory, setSelectedCategory ] = useState('business_title')
     const loggedIn = useSelector(state => state.session.loggedIn)
     const [ page, setPage ] = useState(1)
-
+    const containerRef = useRef()
  
     function updateFilterText(e){
         setFilterText(e.target.value)
@@ -33,20 +33,31 @@ function Jobs() {
         return false
     } )
  
+    function scrollToTop(){
+        if (containerRef.current) {
+          containerRef.current.scrollTo({
+            top:0,
+            behavior: 'smooth'
+          })
+        }
+      }
 
     function incrementPage(){
         if(jobs.length/50 - 1   > page){
             setPage(parseInt(page) + 1)
+            scrollToTop()
         }
     }
 
     function decrementPage(){
         if( page > 1){ 
             setPage(parseInt(page) - 1)
+            scrollToTop()
             }
     }
 
 
+  
 
     const indexFrom = page === 1 ? 0 : page * 50
     const indexTo = (page+1) * 50
@@ -59,15 +70,19 @@ function Jobs() {
 
         <Switch>
 
-            <Route exact path='/jobs'>
-            <Filter filterText={filterText} updateFilterText={updateFilterText} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory}/>
+            <Route path='/job/:job_id'>
+                <DetailedJobCard />
+            </Route>
+
+            <Route exact path='/'>
+                <Filter filterText={filterText} updateFilterText={updateFilterText} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory}/>
             
-            <div className='pb-2 border-b-2 grid grid-cols-2'>
-                <p className='text-xs text-blue-600'>Results: {jobs?.length} jobs</p>
-               { !loggedIn && <p className="text-xs text-red-500 text-right">Log in to save jobs</p>}
-            </div>
-                
-                <div className='overflow-auto h-[70vh]'>
+                <div id='top' className='pb-2 border-b-2 grid grid-cols-2'>
+                    <p className='text-xs text-blue-600'>Results: {jobs?.length} jobs</p>
+                { !loggedIn && <p className="text-xs text-red-500 text-right">Log in to save jobs</p>}
+                </div>
+                    
+                <div ref={containerRef} className='overflow-auto h-[70vh]'>
                         { renderJobCards }
                 </div>  
 
@@ -77,12 +92,10 @@ function Jobs() {
                     <button className='m-auto p-2' onClick={incrementPage}>+</button>
 
                 </div>
- 
+    
             </Route>
 
-            <Route path='/jobs/:job_id'>
-                <DetailedJobCard />
-            </Route>
+
 
         </Switch>
 

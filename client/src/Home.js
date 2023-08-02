@@ -63,7 +63,7 @@ function Home() {
               <User />
             </Route>
 
-            <Route path='/jobs'>
+            <Route path='/'>
               <Jobs />
             </Route>
 

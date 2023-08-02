@@ -36,8 +36,8 @@ function PasswordResetForm() {
     return ( 
         <form onSubmit={submitPasswordChange}>
 
-            <input type='new_password' placeholder='new password' name='password' value={passwordObj.password} onChange={updatePasswordObj}/>
-            <input type='new_password' placeholder='confirm new password' name='password_confirmation' value={passwordObj.password_confirmation} onChange={updatePasswordObj} />
+            <input type='password' placeholder='new password' name='password' value={passwordObj.password} onChange={updatePasswordObj}/>
+            <input type='password' placeholder='confirm new password' name='password_confirmation' value={passwordObj.password_confirmation} onChange={updatePasswordObj} />
             <div><p className='error'>{errors?.errors}</p></div>
             <button>submit</button>
         </form> );

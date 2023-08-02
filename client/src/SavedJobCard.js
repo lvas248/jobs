@@ -31,13 +31,13 @@ function SavedJobCard({ job }) {
     }
 
     return ( 
-        <div key={job.id} className={`relative mt-2 group min-h-max ${ job.applied && 'bg-green-100'}`} >
+        <div key={job.id} className={`relative mt-2 group min-h-max ${ job.applied && 'bg-green-100'}` } >
 
             <div className={`col-span-9 ${ (removeClick || appliedClick) && 'hidden'}`}>
                 
                 <JobCard job={job} />
 
-                <div className='hidden group-hover:flex  absolute bottom-0 right-2  '>
+                <div className='hidden group-hover:flex absolute bottom-0 right-2  '>
                     <button onClick={switchApplied} className={`mt-0 border-none text-lg font-bold`}>A</button>
                     <button onClick={switchRemove} className={`mt-0 border-none font-bold text-lg`}>𝐗</button> 
                 </div>

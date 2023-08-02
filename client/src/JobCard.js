@@ -10,8 +10,6 @@ function JobCard({job}) {
     const loggedIn = useSelector( state => state.session.loggedIn)
     const savedJobs = useSelector( state => state.savedJob.entity)
 
-    console.log(loggedIn)
-
     function replaceWierdText(string){
 
         if(!string) return ''
@@ -39,7 +37,7 @@ function JobCard({job}) {
     }
 
     function navigateToDetailedCard(){
-        history.push(`/jobs/${job.job_id}`)
+        history.push(`/job/${job.job_id}`)
     }
 
     function submitJobSave(){
