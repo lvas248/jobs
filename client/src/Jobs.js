@@ -10,10 +10,11 @@ function Jobs() {
 
     const [ filterText, setFilterText ] = useState('')
     const [ selectedCategory, setSelectedCategory ] = useState('business_title')
-    const loggedIn = useSelector(state => state.session.loggedIn)
     const [ page, setPage ] = useState(1)
+    
     const containerRef = useRef()
- 
+    const loggedIn = useSelector(state => state.session.loggedIn)
+
     function updateFilterText(e){
         setFilterText(e.target.value)
         if(page !== 1) setPage(1)
@@ -55,9 +56,6 @@ function Jobs() {
             scrollToTop()
             }
     }
-
-
-  
 
     const indexFrom = page === 1 ? 0 : page * 50
     const indexTo = (page+1) * 50

@@ -10,16 +10,12 @@ import { refreshSession } from './features/sessionSlice';
 import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getJobs } from './features/jobsData/jobSlice'
 
 function Home() {
 
   const dispatch = useDispatch()
-  const user = useSelector( state => state.user)
-  const savedJobs = useSelector( state => state.savedJob)
-
-  console.log(user, savedJobs)
 
   useEffect(()=>{
     dispatch(getJobs())

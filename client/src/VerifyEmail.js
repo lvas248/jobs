@@ -17,7 +17,7 @@ function VerifyEmail() {
        
         dispatch(submitToken({token: token})).then(res =>{
             if(res.meta.requestStatus === 'fulfilled'){
-                history.push('/user')
+                history.push('/')
             }
         })
     }, [dispatch,token, history]);
