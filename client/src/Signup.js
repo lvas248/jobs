@@ -34,7 +34,7 @@ function Signup() {
 
     function submitSignup(e){
         e.preventDefault()
-        dispatch(signupUser(signupObj)).then( res=>{
+        dispatch(signupUser({...signupObj, email: signupObj.email.toLowerCase()})).then( res=>{
             if(res.meta.requestStatus === 'fulfilled'){        
                 setSignupObj({
                     email: '',

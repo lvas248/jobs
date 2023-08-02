@@ -28,7 +28,7 @@ function PasswordResetForm() {
             if( res.meta.requestStatus === 'fulfilled'){
                 alert('Password has been updated')
                 history.push('/login')
-            }  
+            }
         })
     }
 
