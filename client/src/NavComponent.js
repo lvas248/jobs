@@ -32,7 +32,7 @@ function NavComponent() {
 
                     <div className='hidden sm:block p-6'>
     
-                        <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/'>NYC Jobs</NavLink>
+                        <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/'>All Jobs</NavLink>
 
                         { loggedIn ?(
                         <>
@@ -50,7 +50,7 @@ function NavComponent() {
 
                 <div className={`absolute w-full z-20 flex flex-col sm:hidden ${navbarToggle ? '':'hidden'}`}>
     
-                    <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/'>NYC Jobs</NavLink>
+                    <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/'>Jobs</NavLink>
 
                     { loggedIn ?(
                         <>

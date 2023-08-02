@@ -60,12 +60,15 @@ function JobCard({job}) {
             
                 </div>
 
-                <div className='w-[10%] align-middle p-none pr-1 text-right'>
+                <div className='w-[10%] align-middle p-none pr-1 text-right relative'>
 
                     { saved ? (
                         <p className='text-xs text-green-600'>saved</p>
                     ) : (
-                        <button onClick={submitJobSave} className={`border-none pt-none rounded-full mt-0 hover:bg-white ${!loggedIn && 'hidden'}`}>➕</button>
+                        <>
+                            <button onClick={submitJobSave} className={`peer border-none pt-none rounded-full mt-0 hover:bg-white ${!loggedIn && 'hidden'}`}>➕</button>
+                            <div className='absolute top-0 right-10 text-green-600  w-max text-xs text-left p-1 hidden sm:peer-hover:block z-20'>Add to my jobs</div>
+                        </>
                     ) }
                 </div>
 

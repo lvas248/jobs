@@ -43,13 +43,13 @@ function User() {
     return ( 
         <div>
     
-            <p className='text-sm mb-2 float-right font-bold'>Email Address: {user.entity.email}</p>
+            <p className='text-xs sm:text-sm mb-2 float-right font-bold'>Email Address: {user.entity.email}</p>
                 
             <div>
-                <h1 className='text-xl underline font-bold'>Saved Jobs</h1>
+                <h1 className='text-sm sm:text-xl underline font-bold'>Saved Jobs</h1>
                 <div className='flex items-center'>
                     <Filter filterText={filterText} updateFilterText={updateFilterText} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory}/>
-                    <div className='flex ml-2'>
+                    <div className='flex ml-2 text-sm'>
                         <p>Applied</p>
                         <input value={appliedFilter} onChange={()=>setAppliedFilter(!appliedFilter)}className='w-fit m-1' type='checkbox'/>
                     </div>

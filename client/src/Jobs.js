@@ -11,7 +11,7 @@ function Jobs() {
     const [ filterText, setFilterText ] = useState('')
     const [ selectedCategory, setSelectedCategory ] = useState('business_title')
     const [ page, setPage ] = useState(1)
-    
+
     const containerRef = useRef()
     const loggedIn = useSelector(state => state.session.loggedIn)
 
