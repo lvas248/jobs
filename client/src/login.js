@@ -29,7 +29,7 @@ function Login() {
 
     function submitLoginObj(e){
         e.preventDefault()
-        dispatch(loginuser(loginObj)).then( res =>{
+        dispatch(loginuser({...loginObj, email: loginObj.email.toLowerCase()})).then( res =>{
             if(res.meta.requestStatus === 'fulfilled') navigateTo('user')
         })
     }
