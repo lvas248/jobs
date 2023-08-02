@@ -80,7 +80,7 @@ function Jobs() {
                 { !loggedIn && <p className="text-xs text-red-500 text-right">Log in to save jobs</p>}
                 </div>
                     
-                <div ref={containerRef} className='overflow-auto h-[70vh]'>
+                <div ref={containerRef} className='overflow-auto h-[70vh] p-1'>
                         { renderJobCards }
                 </div>  
 

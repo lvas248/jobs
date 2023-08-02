@@ -54,7 +54,7 @@ function User() {
                         <input value={appliedFilter} onChange={()=>setAppliedFilter(!appliedFilter)}className='w-fit m-1' type='checkbox'/>
                     </div>
                 </div>
-                <div className='h-[78vh] overflow-auto'>
+                <div className='h-[78vh] overflow-auto p-1'>
                     {renderSavedJobs.length > 0 ? renderSavedJobs : 'No saved jobs' }
                 </div>
             </div>

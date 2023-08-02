@@ -49,7 +49,7 @@ function JobCard({job}) {
        return ( 
             <div 
 
-                className={`border p-2 hover:cursor-pointer relative flex flex-row  hover:border-yellow-300  hover:border-1 shadow hover:bg-slate-100`}>
+                className={`border p-2 hover:cursor-pointer relative flex flex-row sm:hover:border-yellow-300  sm:hover:border-1 shadow sm:hover:bg-slate-100`}>
                 
                 <div onClick={navigateToDetailedCard} className='hover:cursor-pointer w-[90%]'>
 
