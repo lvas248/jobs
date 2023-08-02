@@ -18,7 +18,7 @@ function Login() {
     })
 
     function navigateTo(path){
-        history.push(`/`+path)
+        history.push(`/`+ path)
     }
 
     function updateLoginObj(e){
@@ -36,7 +36,6 @@ function Login() {
 
     function requestEmailVerif(){
         dispatch(requestVerifyEmail({email: loginObj.email})).then(res => {
-            console.log(res)
             if(res.meta.requestStatus === 'fulfilled') navigateTo('email_sent')
         })
     }
