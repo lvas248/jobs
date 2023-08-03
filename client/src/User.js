@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import SavedJobCard from "./SavedJobCard";
 import { useState } from 'react'
 import Filter from "./Filter";
+import LoadingIcon from "./LoadingIcon";
 
 function User() {
 
@@ -11,6 +12,7 @@ function User() {
     const [ appliedFilter, setAppliedFilter ] = useState(false)
 
     let savedJobs = useSelector( state => state.savedJob.entity)
+    const savedJobStatus = useSelector( state => state.savedJob.status)
     const user = useSelector( state => state.user)
 
     function updateFilterText(e){
@@ -42,6 +44,8 @@ function User() {
 
     return ( 
         <div>
+
+            <LoadingIcon status={savedJobStatus}/>
     
             <p className='text-xs sm:text-sm mb-2 float-right font-bold'>Email Address: {user.entity.email}</p>
                 

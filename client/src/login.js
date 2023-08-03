@@ -3,12 +3,15 @@ import { useHistory } from 'react-router-dom'
 import { loginuser } from './features/sessionSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { requestVerifyEmail } from './features/user/userSlice'
+import LoadingIcon from './LoadingIcon'
 
 function Login() {
 
     const dispatch = useDispatch()
     const errors = useSelector( state => state.session.error)
     const userError = useSelector( state => state.user.error)
+    const sessionStatus = useSelector( state => state.session.status)
+
     const history = useHistory()
   
 
@@ -42,8 +45,10 @@ function Login() {
 
 
     return ( 
-            <form onSubmit={submitLoginObj}>
+            <form onSubmit={submitLoginObj} className='animate-glide-in-right relative'>
                 
+                <LoadingIcon status={sessionStatus} />
+
                 <input type='text' placeholder='email' name='email' value={loginObj.username} onChange={updateLoginObj}  />
 
                 <p className='error'>{errors?.email}</p>

@@ -2,12 +2,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { signupUser, resetErrors } from './features/sessionSlice'
+import LoadingIcon from './LoadingIcon'
 
 function Signup() {
 
  
     const dispatch = useDispatch()
     const errors = useSelector( state => state.session.error)
+    const sessionStatus = useSelector( state => state.session.status)
     const history = useHistory()
 
     useEffect(()=>{
@@ -66,7 +68,9 @@ function Signup() {
 
 
     return ( 
-        <form>
+        <form className='animate-glide-in-right'>
+
+            <LoadingIcon status={sessionStatus} />
 
             <input type='email' name='email' placeholder='email' value={signupObj.email} onChange={updateSignupObj}/>
             
