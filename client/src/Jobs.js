@@ -67,7 +67,7 @@ function Jobs() {
     })
 
     return (  
-        <div>
+        <div className='h-[90vh]'>
 
             <LoadingIcon status={jobStatus} />
 
@@ -78,6 +78,7 @@ function Jobs() {
                 </Route>
 
                 <Route exact path='/'>
+
                     <Filter filterText={filterText} updateFilterText={updateFilterText} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory}/>
                 
                     <div id='top' className='pb-2 border-b-2 grid grid-cols-2'>
@@ -85,7 +86,7 @@ function Jobs() {
                     { !loggedIn && <p className="text-xs text-red-500 text-right">Log in to save jobs</p>}
                     </div>
                         
-                    <div ref={containerRef} className='overflow-auto h-[70vh] p-1'>
+                    <div ref={containerRef} className='overflow-auto h-[60vh] sm:h-[70vh] p-1'>
                             { renderJobCards }
                     </div>  
 
