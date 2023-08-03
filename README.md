@@ -1,191 +1,46 @@
 
-## FAQ
+## Features
 
-#### What is this repo?
+#### 1. View All available NYC govermetn jobs:
+Browse through a comprehensive list of job openings offered by the NYC.  The app gathers the latest listings directly from the NYC.gov, ensuring you don't miss any oppurtunites.
 
-This is an app equipped with the following:
+#### 2. Save Jobs of Interest:
+Found a job that piques your interest? Simply save it to your profile for easy access later. With just a tap, you can add any job to your "Saved JObs" list, making it convenient to review and consider. 
 
-Backend: Rails,
-Frontend: React
-Styling: TailwindCSS
+#### 3. Track Job Applications:
+Stay organized by keeping track of all the jobs you've applied to. Once you submit an application, mark the job as "Applied" in the app. This way, you can easily monitor your progress and avoid duplicate applications.
 
-#### What is built in o the template?
-
-The template arrives stocked with the following:
-
-- setup with rails, react, and tailwindcss installed
-- email verification system upon signup
-- password recovery system
-- responsive navbar
+#### 4. User-Friendly Interface:
+NYC Job Hunt is designed with a user-friendly interface, making navigation and job search a breeze. 
 
 
-## Installation
+# Getting Started
 
-Install my-project by visiting git hub repo and cllicking on use template to create a new repository frome the template.
 
-Once the the repo has been created, simply clone the repo:
 
-```bash
-$ git clone git@github.com:lvas248/template-react-rails-tailwind.git
-$ cd project_name
-$ bundle install
-```
+With NYC Job Hunt, you have the convenience of saving job postings that catch your eye. Follow these simple steps to save and manage your favorite job opportunities:
 
-cd into the root of the react file and install packages using npm
+### Step 1: Sign up for an Account
+To access the saving feature and other functionalities, you need to create a personalized account. Click on the "Login" button in the navigation bar to get started.
 
-```bash
-$ cd client
-$ npm install
-``` 
+On the login page, find the "Sign Up" button, which will direct you to the registration form. Provide your email address and create a secure password following our validation criteria (at least one letter, one number, and a minimum of 8 characters). Once you've successfully submitted the form, check your email for a verification link. Click on the link to confirm your address and unlock the full potential of NYC Job Hunt.
 
-Next, head into config/database.yml and update the postgres db:
+![Alt Text](./gifs/2.signup.gif)
 
-```bash
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+### Step 2: Browsing the list of jobs
 
-development:
-  <<: *default
-  database: nyc_jobs_development //update this
+Clicking on the All Jobs tab will direct you to the jobs list. Here, you can scroll through a variety of available jobs or filter them by keywords. Once you find a job that interests you, tap on it to view more details. The job details page provides essential information such as salary, location, qualifications, additional info, and a direct application link.
 
-  test:
-  <<: *default
-  database: nyc_jobs_template_test //update this
+![Alt Text](./gifs/media/1.browsing.gif)
 
-  production:
-  <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+### Step 3: Save a Job Posting
+After creating an account, you can start saving job postings that interest you. On the jobs list page, browse through the available job openings offered by NYC. When you find a job that piques your interest, simply click on the plus sign (+) next to the job listing to save it to your profile.
 
-```
 
-Now create the db, in the root of the rails app:
+### Step 4: Manage Saved Jobs
+To view and manage your saved job postings, click on the "User" tab in the navigation bar. Here, you will find all the job postings you have saved. To remove a saved job posting, click on the "x" next to the job listing. If you've applied for a job, you can mark it as "Applied" by clicking on the letter "A" next to the job listing. This way, you can keep track of your applications and avoid applying for the same job twice.
 
-```bash
-$ rails db:create
-```
+![Alt Text](./gifs/3.saving_jobs.gif)
 
-Now that the db has been created, you can migrate:
-
-```bash
-$ rails db:migrate
-```
-
-## Deploying
-
-This application has all the starter code needed to help you deploy your
-application to Render. It's recommended to deploy your project early and push up
-changes often to ensure that your code works equally well in production and
-development environments.
-
-The instructions in this section assume that you've already set up a Render
-account, created a PostgreSQL instance in your account, and set up your
-environment to deploy to Render. If you have not yet completed these steps, see
-the Environment Setup section below.
-
-### Create a Master Key File
-
-In the project files, delete the `config/credentials.yml.enc` file. Then, in the
-terminal, run the following:
-
-```sh
-$ EDITOR="code --wait" bin/rails credentials:edit
-```
-
-**Note**: if you use a different text editor than VS Code, you will need to replace
-`code` with the appropriate command.
-
-The command above will open a file in VS Code and wait for you to close it
-before completing the process of creating the credential files. Once you've done
-that, you should see both the `credentials.yml.enc` and `master.key` files in
-the `config` folder. You will need the value in the `master.key` file to set up
-the web service in Render.
-
-Commit your changes and push them to GitHub.
-
-### Create the App Database
-
-Render allows users to create [multiple databases within a single PostgreSQL
-instance][multiple dbs] using the PostgreSQL interactive terminal,
-[`psql`][psql].
-
-Navigate to your PostgreSQL instance from the Render dashboard, click the
-"Connect" dropdown, then the External Connection tab, and copy the PSQL command.
-Paste it into your terminal and press enter. This command connects you to the
-remote PostgreSQL instance.
-
-To create the database, run this SQL command:
-
-```sql
-CREATE DATABASE new_db_name;
-```
-
-Now if you run `\l` from the PSQL prompt, you should see a table that includes
-your main PostgreSQL instance as well as the database you just created.
-
-Run the `\q` command to exit PSQL.
-
-[multiple dbs]: https://render.com/docs/databases#multiple-databases-in-a-single-postgresql-instance
-[psql]: https://www.postgresql.org/docs/current/app-psql.html
-
-### Create the Render Web Service
-
-To deploy, click the "New +" button in Render and select "Web Service". You'll
-see a list of all the repositories in your GitHub account. Find the repo you
-want to deploy and click the "Select" button.
-
-In the page that opens, enter a name for your app and make sure the Environment
-is set to Ruby.
-
-Scroll down and set the Build Command to `./bin/render-build.sh` and the Start
-Command to `bundle exec puma -C config/puma.rb`.
-
-Open a separate tab in your browser, navigate to the Render dashboard, and click
-on your PostgreSQL instance. Scroll down to the "Connection" section, find the
-"Internal Database URL", and copy it.
-
-Return to the other tab. Scroll down and click the "Advanced" button, then click
-"Add Environment Variable." Enter `DATABASE_URL` as the key, then paste in the
-URL you just copied. Note that the URL will end with the name you gave your
-PostgreSQL instance when you initially created it; be sure to remove that name
-and replace it with the name of the database you created in the last section.
-
-Click "Add Environment Variable" again. Add `RAILS_MASTER_KEY` as the key, and
-paste the value in the `config/master.key` file you created earlier.
-
-The completed page should look like this:
-
-![Web service settings](https://curriculum-content.s3.amazonaws.com/phase-4/project-template/web-service-settings.png)
-
-Scroll down to the bottom of the page and click "Create Web Service". The deploy
-process will begin automatically.
-
-## Environment Setup
-
-### Install the Latest Ruby Version
-
-Verify which version of Ruby you're running by entering this in the terminal:
-
-```console
-$ ruby -v
-```
-
-We recommend version 2.7.4. If you need to upgrade you can install it using rvm:
-
-```console
-$ rvm install 2.7.4 --default
-```
-
-You should also install the latest versions of `bundler` and `rails`:
-
-```console
-$ gem install bundler
-$ gem install rails
-```
-
-## Documentation
-
-[Documentation](https://linktodocumentation)
+### Step 5: Utilize Search and Filter
+As your list of saved job postings grows, you can conveniently search through them by using keywords or applying filters. This feature makes it easier for you to find specific job opportunities within your saved list.

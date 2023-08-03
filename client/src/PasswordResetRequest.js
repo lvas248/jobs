@@ -20,10 +20,8 @@ function PasswordResetRequest() {
         })
     }
 
-    
-
     return ( 
-        <form onSubmit={submitRequest}>
+        <form onSubmit={submitRequest} className='animate-fade-in'>
             <input placeholder="email address..." value={email} onChange={e=>setEmail(e.target.value)} />
             <button>submit</button>
             <p className='error'>{error?.error}</p>
