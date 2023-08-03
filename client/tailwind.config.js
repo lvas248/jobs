@@ -30,16 +30,15 @@ module.exports = {
           '0%': { transform: 'translateX(0)'},
           '100%': { transform: 'translateX(400%)'},
         },
+
       },
       animation: {
         'glide-in-right': 'glideInRight 500ms ease-out',
         'glide-in-left': 'glideInLeft 01s ease-out',
-        'fade-in': 'fadeIn 0.5s ease-in',
+        'fade-in': 'fadeIn 750ms ease-in',
         'glide-in-top': 'glideInTop 01s ease-out',
         'glide-in-bottom': 'glideInBottom 01s ease-out',
         'glide-out-right': 'glideOutRight 01s ease-out',
-
-  
       },
     },  },
   plugins: [],

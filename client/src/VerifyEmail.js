@@ -17,7 +17,10 @@ function VerifyEmail() {
        
         dispatch(submitToken({token: token})).then(res =>{
             if(res.meta.requestStatus === 'fulfilled'){
-                history.push('/')
+                setTimeout(()=>{
+                    history.push('/')                    
+                }, 1500)
+
             }
         })
     }, [dispatch,token, history]);
@@ -37,11 +40,15 @@ function VerifyEmail() {
 
             { user.status === 'pending' && 'verifying email...'}
 
-            { user?.error && (
+            { user?.error ? (
                 <>
                     <p className='error'>{user.error.error}</p>
                     <button onClick={requestVerificationEmail}> request another verification email </button>
                 </>
+            ) : (
+                <p className='text-xl font-bold'>
+                    'Email has been verified,  redirecting now...'
+                </p>
             )}
 
         </div>

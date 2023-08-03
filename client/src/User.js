@@ -43,7 +43,7 @@ function User() {
 
 
     return ( 
-        <div>
+        <div className='animate-fade-in'>
 
             <LoadingIcon status={savedJobStatus}/>
     

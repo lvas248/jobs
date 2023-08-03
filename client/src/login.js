@@ -45,7 +45,7 @@ function Login() {
 
 
     return ( 
-            <form onSubmit={submitLoginObj} className='animate-glide-in-right relative'>
+            <form onSubmit={submitLoginObj} className='animate-fade-in relative'>
                 
                 <LoadingIcon status={sessionStatus} />
 

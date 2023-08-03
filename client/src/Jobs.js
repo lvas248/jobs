@@ -78,7 +78,7 @@ function Jobs() {
                 </Route>
 
                 <Route exact path='/'>
-                    <div className=''>
+                    <div className='animate-fade-in'>
 
                         <Filter filterText={filterText} updateFilterText={updateFilterText} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory}/>
                     

@@ -68,7 +68,7 @@ function Signup() {
 
 
     return ( 
-        <form className='animate-glide-in-right'>
+        <form className='animate-fade-in'>
 
             <LoadingIcon status={sessionStatus} />
 
