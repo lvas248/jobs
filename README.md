@@ -1,7 +1,7 @@
 
 ## Features
 
-#### 1. View All available NYC govermetn jobs:
+#### 1. View All available NYC goverment jobs:
 Browse through a comprehensive list of job openings offered by the NYC.  The app gathers the latest listings directly from the NYC.gov, ensuring you don't miss any oppurtunites.
 
 #### 2. Save Jobs of Interest:
@@ -31,7 +31,7 @@ On the login page, find the "Sign Up" button, which will direct you to the regis
 
 Clicking on the All Jobs tab will direct you to the jobs list. Here, you can scroll through a variety of available jobs or filter them by keywords. Once you find a job that interests you, tap on it to view more details. The job details page provides essential information such as salary, location, qualifications, additional info, and a direct application link.
 
-![Alt Text](./gifs/media/1.browsing.gif)
+![Alt Text](./gifs/1.browsing.gif)
 
 ### Step 3: Save a Job Posting
 After creating an account, you can start saving job postings that interest you. On the jobs list page, browse through the available job openings offered by NYC. When you find a job that piques your interest, simply click on the plus sign (+) next to the job listing to save it to your profile.
