@@ -22,9 +22,7 @@ function NavComponent() {
 
     return ( 
 
-        <div>
-
-            <nav className=' bg-slate-200'>
+            <nav className='bg-slate-200 h-[9vh]'>
 
                 <div className='flex justify-between'>
 
@@ -63,12 +61,6 @@ function NavComponent() {
                 </div>
                     
             </nav>
-
-
-
-
-        </div>
-   
 
     );
 }

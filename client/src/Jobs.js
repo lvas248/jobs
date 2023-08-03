@@ -67,7 +67,7 @@ function Jobs() {
     })
 
     return (  
-        <div className='h-[90vh]'>
+        <div>
 
             <LoadingIcon status={jobStatus} />
 
@@ -78,24 +78,27 @@ function Jobs() {
                 </Route>
 
                 <Route exact path='/'>
+                    <div className=''>
 
-                    <Filter filterText={filterText} updateFilterText={updateFilterText} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory}/>
-                
-                    <div id='top' className='pb-2 border-b-2 grid grid-cols-2'>
-                        <p className='text-xs text-blue-600'>Results: {jobs?.length} jobs</p>
-                    { !loggedIn && <p className="text-xs text-red-500 text-right">Log in to save jobs</p>}
+                        <Filter filterText={filterText} updateFilterText={updateFilterText} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory}/>
+                    
+                        <div id='top' className='pb-2 border-b-2 grid grid-cols-2'>
+                            <p className='text-xs text-blue-600'>Results: {jobs?.length} jobs</p>
+                        { !loggedIn && <p className="text-xs text-red-500 text-right">Log in to save jobs</p>}
+                        </div>
+                            
+                        <div ref={containerRef} className='overflow-auto h-[55vh] sm:h-[70vh] p-1'>
+                                { renderJobCards }
+                        </div>  
+
+                        <div className='flex items-center'>
+                            <button className='m-auto p-2' onClick={decrementPage}>-</button>
+                            <input className='w-[10vw] text-center' value={page} onChange={(e)=>setPage(e.target.value)}/>
+                            <button className='m-auto p-2' onClick={incrementPage}>+</button>
+                        </div>
+
                     </div>
-                        
-                    <div ref={containerRef} className='overflow-auto h-[60vh] sm:h-[70vh] p-1'>
-                            { renderJobCards }
-                    </div>  
 
-                    <div className='flex items-center'>
-                        <button className='m-auto p-2' onClick={decrementPage}>-</button>
-                        <input className='w-[10vw] text-center' value={page} onChange={(e)=>setPage(e.target.value)}/>
-                        <button className='m-auto p-2' onClick={incrementPage}>+</button>
-
-                    </div>
         
                 </Route>
 

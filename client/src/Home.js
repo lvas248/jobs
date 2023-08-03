@@ -29,9 +29,9 @@ function Home() {
   return (
     <div>
 
-        <NavComponent className='h-[10vh]'/>
+        <NavComponent />
 
-        <div className=' h-[92vh] overflow-auto py-2 px-[10vw]'>
+        <div className=' h-[91vh] overflow-auto py-2 px-[10vw]'>
 
           <Switch>
 
