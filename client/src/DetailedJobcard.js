@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
+import { v4 as uuid } from 'uuid'
 
 function DetailedJobCard(){
 
     const { job_id } = useParams()
     const jobs = useSelector( state => state.job?.entity)
     const job = jobs?.find( j => j.job_id === job_id)
-
+   
     function makeTextReadable(text) {
         if (!text) return '';
 
@@ -23,18 +24,20 @@ function DetailedJobCard(){
         return parts.map((l, index) => {
           // Add line breaks before each subsequent bullet point
           if (index > 0) {
-            return <li className='text-sm m-2' key={l}>{l}</li>;
+            return <li className='text-sm m-2' key={uuid()}>{l}</li>;
           }
-          return <span className='text-sm m-2' key={l}>{l}</span>; // First string without bullet point
+          return <span className='text-sm m-2' key={uuid()}>{l}</span>; // First string without bullet point
         });
       }
+
 
     function formateNumberedText(string) {
         const sentences = string?.split(/ (?=\d+\.)/);
         const sanitizedSentences = sentences?.map((s) => {
           // Replace weird symbols with a space (modify the regex as needed)
           const sanitizedSentence = s.replace(/[^\w\s.,?!]/g, ' ');
-          return <li className='mt-2 text-sm' key={s}>{sanitizedSentence}</li>;
+          
+          return <li className='mt-2 text-sm' key={uuid()}>{sanitizedSentence}</li>;
         });
         return sanitizedSentences;
       }

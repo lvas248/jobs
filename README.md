@@ -25,13 +25,13 @@ To access the saving feature and other functionalities, you need to create a per
 
 On the login page, find the "Sign Up" button, which will direct you to the registration form. Provide your email address and create a secure password following our validation criteria (at least one letter, one number, and a minimum of 8 characters). Once you've successfully submitted the form, check your email for a verification link. Click on the link to confirm your address and unlock the full potential of NYC Job Hunt.
 
-![Alt Text](./gifs/2.signup.gif)
+![Alt Text](./media/gifs/2.signup.gif)
 
 ### Step 2: Browsing the list of jobs
 
 Clicking on the All Jobs tab will direct you to the jobs list. Here, you can scroll through a variety of available jobs or filter them by keywords. Once you find a job that interests you, tap on it to view more details. The job details page provides essential information such as salary, location, qualifications, additional info, and a direct application link.
 
-![Alt Text](./gifs/1.browsing.gif)
+![Alt Text](./media/gifs/1.browsing.gif)
 
 ### Step 3: Save a Job Posting
 After creating an account, you can start saving job postings that interest you. On the jobs list page, browse through the available job openings offered by NYC. When you find a job that piques your interest, simply click on the plus sign (+) next to the job listing to save it to your profile.
@@ -40,7 +40,7 @@ After creating an account, you can start saving job postings that interest you. 
 ### Step 4: Manage Saved Jobs
 To view and manage your saved job postings, click on the "User" tab in the navigation bar. Here, you will find all the job postings you have saved. To remove a saved job posting, click on the "x" next to the job listing. If you've applied for a job, you can mark it as "Applied" by clicking on the letter "A" next to the job listing. This way, you can keep track of your applications and avoid applying for the same job twice.
 
-![Alt Text](./gifs/3.saving_jobs.gif)
+![Alt Text](./media/gifs/3.saving_jobs.gif)
 
 ### Step 5: Utilize Search and Filter
 As your list of saved job postings grows, you can conveniently search through them by using keywords or applying filters. This feature makes it easier for you to find specific job opportunities within your saved list.
