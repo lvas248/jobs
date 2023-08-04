@@ -4,6 +4,7 @@ import { loginuser } from '../Redux/slices/sessionSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { requestVerifyEmail } from '../Redux/slices/userSlice'
 import LoadingIcon from '../Components/LoadingIcon'
+import Alert from '../Components/Alert'
 
 function Login() {
 
@@ -18,6 +19,10 @@ function Login() {
     const [ loginObj, setLoginObj ] = useState({
         email: '',
         password: ''
+    })
+    const [ displayAlert, setDisplayAlert ] = useState({
+        display: false,
+        text: ''
     })
 
     function navigateTo(path){
@@ -39,7 +44,16 @@ function Login() {
 
     function requestEmailVerif(){
         dispatch(requestVerifyEmail({email: loginObj.email})).then(res => {
-            if(res.meta.requestStatus === 'fulfilled') navigateTo('email_sent')
+            if(res.meta.requestStatus === 'fulfilled'){
+                setDisplayAlert({ text: 'An email has been sent with a verification link.  Click the link to proceed.', display: true })
+                setTimeout(()=>{
+                    setDisplayAlert({text:'', display: false})
+                    setLoginObj({
+                        email: '',
+                        password: ''
+                    })
+                },4000)
+            }
         })
     }
 
@@ -47,6 +61,7 @@ function Login() {
     return ( 
             <form onSubmit={submitLoginObj} className='animate-fade-in relative'>
                 
+                <Alert text={displayAlert.text} display={displayAlert.display}/>
                 <LoadingIcon status={sessionStatus} />
 
                 <input type='text' placeholder='email' name='email' value={loginObj.username} onChange={updateLoginObj}  />

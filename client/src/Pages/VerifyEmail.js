@@ -13,13 +13,13 @@ function VerifyEmail() {
 
 
     const user = useSelector(state => state.user)
-    const [ displayAlert, setDisplayAlert ] = useState(false)
+    const [ displayAlert, setDisplayAlert ] = useState({ display: false, text: ''})
 
     useEffect(() => {
        
         dispatch(submitToken({token: token})).then(res =>{
             if(res.meta.requestStatus === 'fulfilled'){
-                setDisplayAlert(true)
+                setDisplayAlert({display: true, text: 'Congrats! Your email has been confirmed. Redirecting to jobs...'})
                 setTimeout(()=>{
                     history.push('/')                    
                 }, 3000)
@@ -32,7 +32,10 @@ function VerifyEmail() {
         //create and dispatch async that fetche requests new verification
         dispatch(requestVerifyEmail()).then(res => {
             if(res.meta.requestStatus === 'fulfilled'){
-                history.push('/email_sent')
+                setDisplayAlert({display: true, text: 'An email has been sent with a verification link.  Click link to proceed.  Redirecting...'})
+                setTimeout(()=>{
+                    history.push('/login')                    
+                }, 3000)
             }
         })
     }
@@ -43,7 +46,7 @@ function VerifyEmail() {
 
             <LoadingIcon status={user.status} />
 
-            <Alert text='Congrats! Your email has been confirmed. Redirecting to jobs...' display={displayAlert}/>
+            <Alert text={displayAlert.text} display={displayAlert.display}/>
 
             { user?.error && (
                 <>
