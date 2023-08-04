@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { requestPasswordReset } from './features/user/userSlice';
-import Alert from './Alert';
+import { requestPasswordReset } from '../Redux/slices/userSlice';
+import Alert from '../Components/Alert';
 
 function PasswordResetRequest() {
 

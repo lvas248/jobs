@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from 'uuid'
 import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom/cjs/react-router-dom.min";
 import DetailedJobCard from "./DetailedJobcard";
-import Filter from "./Filter";
+import Filter from "../../Components/Filter";
 import { useState, useRef } from "react";
-import LoadingIcon from "./LoadingIcon";
+import LoadingIcon from "../../Components/LoadingIcon";
 
 function Jobs() {
 

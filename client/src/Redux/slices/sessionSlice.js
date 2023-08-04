@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addUser, removeUser } from './user/userSlice'
-import { loadSavedJobs, removeSavedJobs } from "./user/savedJobSlice";
+import { addUser, removeUser } from './userSlice'
+import { loadSavedJobs, removeSavedJobs } from "./savedJobSlice";
 
 
 //create signup async

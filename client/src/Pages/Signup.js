@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { signupUser, resetErrors } from './features/sessionSlice'
-import LoadingIcon from './LoadingIcon'
-import Alert from './Alert'
+import { signupUser, resetErrors } from '../Redux/slices/sessionSlice'
+import LoadingIcon from '../Components/LoadingIcon'
+import Alert from '../Components/Alert'
 
 function Signup() {
 

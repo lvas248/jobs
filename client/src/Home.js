@@ -1,17 +1,17 @@
-import Signup from './Signup';
-import Login from './login';
-import User from './User'
-import PasswordResetForm from './PasswordResetForm'
-import PasswordResetRequest from './PasswordResetRequest'
-import NavComponent from './NavComponent';
-import Jobs from './Jobs';
+import Signup from './Pages/Signup';
+import Login from './Pages/login';
+import User from './Pages/Users/User'
+import PasswordResetForm from './Pages/PasswordResetForm'
+import PasswordResetRequest from './Pages/PasswordResetRequest'
+import NavComponent from './Layout/NavComponent';
+import Jobs from './Pages/Jobs/Jobs';
 
-import { refreshSession } from './features/sessionSlice';
+import { refreshSession } from './Redux/slices/sessionSlice';
 import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux';
-import { getJobs } from './features/jobsData/jobSlice'
+import { getJobs } from './Redux/slices/jobSlice'
 
 function Home() {
 

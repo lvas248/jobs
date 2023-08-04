@@ -1,6 +1,8 @@
 import { useHistory } from 'react-router-dom' 
 import { useDispatch, useSelector } from 'react-redux'
-import { saveJob } from './features/user/savedJobSlice'
+import { saveJob } from '../../Redux/slices/savedJobSlice'
+import { formatDate, replaceWierdText } from '../../Helpers';
+
 
 function JobCard({job}) {
     
@@ -9,32 +11,6 @@ function JobCard({job}) {
     
     const loggedIn = useSelector( state => state.session.loggedIn)
     const savedJobs = useSelector( state => state.savedJob.entity)
-
-    function replaceWierdText(string){
-
-        if(!string) return ''
-
-        const symbolsMap = {
-            'â¢': '•',
-            'â': "'",
-          };
-        
-          // Replace the weird symbols with their appropriate counterparts
-          let cleanedText = string;
-          for (const [weirdSymbol, readableSymbol] of Object.entries(symbolsMap)) {
-            cleanedText = cleanedText.split(weirdSymbol).join(readableSymbol);
-          }
-          return cleanedText
-    }
-
-    function formatDate(dateTimeString){
-        const dateObj = new Date(dateTimeString)
-        const month = dateObj.toLocaleString('default', {month: 'long'})
-        const day = dateObj.getDate();
-        const year = dateObj.getFullYear()
-        return `${month} ${day}, ${year}`
-
-    }
 
     function navigateToDetailedCard(){
         history.push(`/job/${job.job_id}`)

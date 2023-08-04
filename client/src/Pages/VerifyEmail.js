@@ -1,9 +1,9 @@
 import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { submitToken, requestVerifyEmail } from './features/user/userSlice'
-import LoadingIcon from './LoadingIcon'
-import Alert from './Alert'
+import { submitToken, requestVerifyEmail } from '../Redux/slices/userSlice'
+import LoadingIcon from '../Components/LoadingIcon'
+import Alert from '../Components/Alert'
 
 function VerifyEmail() {
 

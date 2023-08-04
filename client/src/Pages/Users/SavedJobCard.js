@@ -1,6 +1,6 @@
-import JobCard from "./JobCard";
+import JobCard from "../Jobs/JobCard";
 import { useState } from 'react'
-import { deleteSavedJob, updateSavedJob } from "./features/user/savedJobSlice";
+import { deleteSavedJob, updateSavedJob } from "../../Redux/slices/savedJobSlice";
 import { useDispatch } from 'react-redux'
 
 function SavedJobCard({ job }) {

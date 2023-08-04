@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom';
-import menu from './media-icons/menu.png'
 import { useSelector, useDispatch } from 'react-redux';
-import { logoutSession } from './features/sessionSlice';
-
+import { logoutSession } from '../Redux/slices/sessionSlice';
+import menu from '../Assets/menu.png'
 
 function NavComponent() {
 

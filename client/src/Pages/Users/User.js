@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import SavedJobCard from "./SavedJobCard";
 import { useState } from 'react'
-import Filter from "./Filter";
-import LoadingIcon from "./LoadingIcon";
+import Filter from "../../Components/Filter";
+import LoadingIcon from "../../Components/LoadingIcon";
 
 function User() {
 

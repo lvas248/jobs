@@ -1,72 +1,15 @@
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
-import { v4 as uuid } from 'uuid'
+import { formatDate, formatNumberedText, makeTextReadable, replaceWierdText } from '../../Helpers';
 
 function DetailedJobCard(){
 
     const { job_id } = useParams()
+    
     const jobs = useSelector( state => state.job?.entity)
+    
     const job = jobs?.find( j => j.job_id === job_id)
    
-    function makeTextReadable(text) {
-        if (!text) return '';
-
-        const cleanedText = replaceWierdText(text)
-      
-        // Split the cleanedText into an array of substrings using the bullet point symbol ('•') as the separator
-        const parts = cleanedText?.split('•');
-      
-        // If the first part is empty (i.e., the cleanedText started with a bullet point), remove it
-        if (parts.length > 0 && parts[0].trim() === '') {
-          parts.shift();
-        }
-      
-        return parts.map((l, index) => {
-          // Add line breaks before each subsequent bullet point
-          if (index > 0) {
-            return <li className='text-sm m-2' key={uuid()}>{l}</li>;
-          }
-          return <span className='text-sm m-2' key={uuid()}>{l}</span>; // First string without bullet point
-        });
-      }
-
-
-    function formateNumberedText(string) {
-        const sentences = string?.split(/ (?=\d+\.)/);
-        const sanitizedSentences = sentences?.map((s) => {
-          // Replace weird symbols with a space (modify the regex as needed)
-          const sanitizedSentence = s.replace(/[^\w\s.,?!]/g, ' ');
-          
-          return <li className='mt-2 text-sm' key={uuid()}>{sanitizedSentence}</li>;
-        });
-        return sanitizedSentences;
-      }
-      
-    function formatDate(dateTimeString){
-        const dateObj = new Date(dateTimeString)
-        const month = dateObj.toLocaleString('default', {month: 'long'})
-        const day = dateObj.getDate();
-        const year = dateObj.getFullYear()
-        return `${month} ${day}, ${year}`
-
-    }
-
-    function replaceWierdText(string){
-
-        if(!string) return ''
-
-        const symbolsMap = {
-            'â¢': '•',
-            'â': "'",
-          };
-        
-          // Replace the weird symbols with their appropriate counterparts
-          let cleanedText = string;
-          for (const [weirdSymbol, readableSymbol] of Object.entries(symbolsMap)) {
-            cleanedText = cleanedText.split(weirdSymbol).join(readableSymbol);
-          }
-          return cleanedText
-    }
     const expired = new Date(job?.post_until) < new Date()
 
 
@@ -132,13 +75,11 @@ function DetailedJobCard(){
 
             </div>
 
-
-
             <div className='mt-8'>
                 <p className='font-bold text-lg'>Minimum Qualifications:</p>
 
                 <ul className='p-2'>
-                    {formateNumberedText(job?.minimum_qual_requirements)}
+                    {formatNumberedText(job?.minimum_qual_requirements)}
                 </ul>
 
             </div>
@@ -157,28 +98,14 @@ function DetailedJobCard(){
 
                 <div className='p-2'>
                     <ul>
-                    { formateNumberedText(job?.additional_information)}
+                    { formatNumberedText(job?.additional_information)}
                     </ul>
-                    {/* <p className='text-sm'>{job?.additional_information}</p> */}
                 </div>
 
             </div>
 
-            {/* <div className='mt-8'>
-                <p className='font-bold text-lg'>Apply</p>
-
-                <div className='p-2'>
-                    <p className='text-sm'>{job?.to_apply}</p>
-                </div>
-
-            </div> */}
-
-         
-
             <a className='border-2 rounded-full p-2 text-white bg-slate-400' href={`https://a127-jobs.nyc.gov/index_new.html?keyword=${job?.job_id}`}>Apply Here</a>
                 
-        
-
             
         </div> 
         );

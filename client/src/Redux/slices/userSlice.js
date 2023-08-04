@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login } from "../sessionSlice";
+import { login } from "./sessionSlice";
 
 export const submitToken = createAsyncThunk(
     'verifiyEmail/user',

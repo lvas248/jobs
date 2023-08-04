@@ -1,9 +1,9 @@
 import {  useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { loginuser } from './features/sessionSlice'
+import { loginuser } from '../Redux/slices/sessionSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { requestVerifyEmail } from './features/user/userSlice'
-import LoadingIcon from './LoadingIcon'
+import { requestVerifyEmail } from '../Redux/slices/userSlice'
+import LoadingIcon from '../Components/LoadingIcon'
 
 function Login() {
 

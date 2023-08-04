@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { submitPasswordUpdate } from './features/user/userSlice'
-import Alert from './Alert'
+import { submitPasswordUpdate } from '../Redux/slices/userSlice'
+import Alert from '../Components/Alert'
 
 function PasswordResetForm() {
 
