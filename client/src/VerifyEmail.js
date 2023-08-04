@@ -1,7 +1,9 @@
 import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { submitToken, requestVerifyEmail } from './features/user/userSlice'
+import LoadingIcon from './LoadingIcon'
+import Alert from './Alert'
 
 function VerifyEmail() {
 
@@ -11,15 +13,16 @@ function VerifyEmail() {
 
 
     const user = useSelector(state => state.user)
-    
+    const [ displayAlert, setDisplayAlert ] = useState(false)
 
     useEffect(() => {
        
         dispatch(submitToken({token: token})).then(res =>{
             if(res.meta.requestStatus === 'fulfilled'){
+                setDisplayAlert(true)
                 setTimeout(()=>{
                     history.push('/')                    
-                }, 1500)
+                }, 3000)
 
             }
         })
@@ -38,18 +41,16 @@ function VerifyEmail() {
     return ( 
         <div className='grid place-content-center p-5 text-center'>
 
-            { user.status === 'pending' && 'verifying email...'}
+            <LoadingIcon status={user.status} />
 
-            { user?.error ? (
+            <Alert text='Congrats! Your email has been confirmed. Redirecting to jobs...' display={displayAlert}/>
+
+            { user?.error && (
                 <>
                     <p className='error'>{user.error.error}</p>
                     <button onClick={requestVerificationEmail}> request another verification email </button>
                 </>
-            ) : (
-                <p className='text-xl font-bold'>
-                    'Email has been verified,  redirecting now...'
-                </p>
-            )}
+            ) }
 
         </div>
         );

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { submitPasswordUpdate } from './features/user/userSlice'
+import Alert from './Alert'
 
 function PasswordResetForm() {
 
@@ -9,6 +10,8 @@ function PasswordResetForm() {
         password: '',
         password_confirmation: ''
     })
+    const [ displayAlert, setDisplayAlert ] = useState(false)
+
     const history = useHistory()
     const { token } = useParams()
     const dispatch = useDispatch()
@@ -26,20 +29,24 @@ function PasswordResetForm() {
         e.preventDefault()
         dispatch(submitPasswordUpdate({token: token, passwordObj: passwordObj})).then(res => {
             if( res.meta.requestStatus === 'fulfilled'){
-                alert('Password has been updated')
-                history.push('/login')
+                setDisplayAlert(true)
+                setTimeout(()=>{
+                    history.push('/login')
+                },3000)
             }
         })
     }
 
-    console.log(errors)
     return ( 
         <form onSubmit={submitPasswordChange}>
+
+            <Alert text='Password reset has been successful.  Redirecting...' display={displayAlert}/>
 
             <input type='password' placeholder='new password' name='password' value={passwordObj.password} onChange={updatePasswordObj}/>
             <input type='password' placeholder='confirm new password' name='password_confirmation' value={passwordObj.password_confirmation} onChange={updatePasswordObj} />
             <div><p className='error'>{errors?.errors}</p></div>
             <button>submit</button>
+
         </form> );
 }
 

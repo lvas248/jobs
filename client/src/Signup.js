@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { signupUser, resetErrors } from './features/sessionSlice'
 import LoadingIcon from './LoadingIcon'
+import Alert from './Alert'
 
 function Signup() {
 
@@ -24,6 +25,8 @@ function Signup() {
         password_confirmation: ''    
     })
 
+    const [ displayAlert, setDisplayAlert ] = useState(false)
+
     function navigateTo(path){
         history.push('./'+ path)
     }
@@ -38,12 +41,16 @@ function Signup() {
         e.preventDefault()
         dispatch(signupUser({...signupObj, email: signupObj.email.toLowerCase()})).then( res=>{
             if(res.meta.requestStatus === 'fulfilled'){        
+
+                setDisplayAlert(true)
+                setTimeout(()=>{
+                    navigateTo('login')
+                }, 4000)                
                 setSignupObj({
                     email: '',
                     password: '',
                     password_confirmation: ''    
                 })
-                navigateTo('email_sent')
             }
             setSignupObj({...signupObj, password: '', password_confirmation: ''})
 
@@ -68,9 +75,12 @@ function Signup() {
 
 
     return ( 
-        <form className='animate-fade-in'>
+
+        <form className={`animate-fade-in `}>
 
             <LoadingIcon status={sessionStatus} />
+
+            <Alert text='An email has been sent with a confirmation link. Click to complete registration.' display={displayAlert} />
 
             <input type='email' name='email' placeholder='email' value={signupObj.email} onChange={updateSignupObj}/>
             

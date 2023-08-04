@@ -43,10 +43,6 @@ function Home() {
               <PasswordResetForm />
             </Route>
 
-            <Route path='/email_sent'>
-              <h1>check your email for a confirmation link to complete sign up.</h1>
-            </Route>
-
             <Route path='/login'>
               <Login />
             </Route>

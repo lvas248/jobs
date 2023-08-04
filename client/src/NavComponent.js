@@ -26,7 +26,7 @@ function NavComponent() {
 
                 <div className='flex justify-between items-center'>
 
-                    <h1 className='text-xl m-4'>NYC Job Hunt</h1>
+                    <NavLink to='/'><h1 className='text-xl m-4'>NYC Job Hunt</h1></NavLink>
 
                     <div className='hidden sm:block p-6'>
     
