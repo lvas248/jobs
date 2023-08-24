@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { deleteSavedJob, updateSavedJob } from "../../Redux/slices/savedJobSlice";
 import { useDispatch } from 'react-redux'
 
-function SavedJobCard({ job }) {
+function SavedJobCard({ job }){
 
     const [ removeClick, setRemoveClick ] = useState(false)
     const [ appliedClick, setAppliedClick ] = useState(false)
@@ -31,39 +31,63 @@ function SavedJobCard({ job }) {
     }
 
     return ( 
-        <div key={job.id} className={`relative mt-2 group min-h-max ${ job.applied && 'bg-green-100'}` } >
+        <div key={job.id} className={`relative group`} >
 
-            <div className={`col-span-9 ${ (removeClick || appliedClick) && 'hidden'}`}>
+            
+            
+            <div className={`flex w-fit ${job.applied ? 'bg-green-200':'bg-slate-200' } rounded-3xl`}>
                 
+
                 <JobCard job={job} />
 
-                <div className='group-hover:flex absolute bottom-0 right-2'>
 
-                    <button onClick={switchApplied} className={`mt-0 peer/apply border-none text-lg font-bold`}>A</button>
-                    <button onClick={switchRemove} className={`mt-0 peer/remove border-none font-bold text-lg`}>𝐗</button> 
+                <div className={`grid grid-cols-1 place-content-center`}>
+
+                    <button 
+                        onClick={switchApplied} 
+                        className={`
+                            place-self-stretch
+                            
+                            mt-0 peer/apply border-none font-bold text-xs   
+                            ${ (removeClick || appliedClick) && 'hidden'}
+                        `}>
+                            Mark Applied
+                    </button>
                     
-                    <div className='absolute -top-1 text-red-600 right-0 w-max text-xs invisible sm:peer-hover/remove:visible'>remove job</div>
-                    <div className={`absolute -top-1 right-5 w-max text-xs m-auto invisible sm:peer-hover/apply:visible text-green-600 ${ job?.applied && 'text-red-600'}`}>{job?.applied ? 'remove applied' : 'mark as applied' }</div>
+                    <button 
+                        onClick={switchRemove} 
+                        className={`
+                            place-self-stretch
+                            mt-0 peer/remove border-none font-bold text-xs 
+                            ${ (removeClick || appliedClick) && 'hidden'}
+                        `}>
+                            Remove
+                    </button> 
+
+                </div>
+
+                <div className={`grid grid-cols-1 place-content-center`}>
+
+                    <div className={`text-xs p-2 max-w-[300px] font-bold ${!removeClick && 'hidden' }`}>
+                        <label className='font-semibold'>Remove this post?</label>
+                        <div>
+                            <button onClick={removeJobPost}>Yes</button>
+                            <button onClick={switchRemove}>Cancel</button>
+                        </div>
+                    </div>
+
+                    <div className={`p-2 text-xs max-w-[150px] font-bold ${!appliedClick && 'hidden' }`}>
+                        <label>{ job.applied ? 'Remove "applied" flag from this job post?' : 'Flag as "applied"?'}</label>
+                        <div>
+                            <button onClick={markApplied}>Yes!</button>
+                            <button onClick={switchApplied}>Cancel</button>
+                        </div>
+                    </div>
 
                 </div>
 
             </div>
 
-            <div className={`col-span-9 text-sm p-2 ${!removeClick && 'hidden' }`}>
-                <label className='w-max'>Are you sure you want to remove this post?</label>
-                <div>
-                    <button onClick={removeJobPost}>Remove</button>
-                    <button onClick={switchRemove}>Cancel</button>
-                </div>
-            </div>
-
-            <div className={`col-span-9 p-2 text-sm ${!appliedClick && 'hidden' }`}>
-                <label>{ job.applied ? 'Do you want to remove the "applied" flag from this job post?' : 'Would you like to flag this job post as "applied"?'}</label>
-                <div>
-                    <button onClick={markApplied}>Yes!</button>
-                    <button onClick={switchApplied}>Cancel</button>
-                </div>
-            </div>
 
         </div>
         

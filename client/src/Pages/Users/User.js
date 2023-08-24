@@ -43,22 +43,24 @@ function User() {
 
 
     return ( 
-        <div className='animate-fade-in'>
+        <div className='animate-fade-in pt-[10vh] h-[60vh] grid'>
 
             <LoadingIcon status={savedJobStatus}/>
     
-            <p className='text-xs sm:text-sm mb-2 float-right font-bold'>Email Address: {user.entity.email}</p>
+            <p className='text-xs sm:text-sm mb-2 text-right font-bold mr-6'>Email Address: {user.entity.email}</p>
                 
-            <div>
+            <div className='px-[4vh]'>
                 <h1 className='text-sm sm:text-xl underline font-bold'>Saved Jobs</h1>
-                <div className='flex items-center'>
+                
+                <div className='flex items-center border-b-2 place-self-center'>
                     <Filter filterText={filterText} updateFilterText={updateFilterText} selectedCategory={selectedCategory} updateSelectedCategory={updateSelectedCategory}/>
                     <div className='flex ml-2 text-sm'>
                         <p>Applied</p>
                         <input value={appliedFilter} onChange={()=>setAppliedFilter(!appliedFilter)}className='w-fit m-1' type='checkbox'/>
                     </div>
                 </div>
-                <div className='h-[78vh] overflow-auto p-1'>
+
+                <div className='h-[70vh] flex flex-wrap justify-center gap-3 pt-3 overflow-auto'>
                     {renderSavedJobs.length > 0 ? renderSavedJobs : 'No saved jobs' }
                 </div>
             </div>

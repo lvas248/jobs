@@ -29,7 +29,7 @@ function PasswordResetRequest() {
     }
 
     return ( 
-        <form onSubmit={submitRequest} className='animate-fade-in'>
+        <form onSubmit={submitRequest} className='animate-fade-in grid]'>
             <Alert text='A password reset link has been sent to the entered email.' display={displayAlert}/>
             <input placeholder="email address..." value={email} onChange={e=>setEmail(e.target.value)} />
             <button>submit</button>

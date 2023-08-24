@@ -27,11 +27,10 @@ function Home() {
 
 
   return (
-    <div>
+    <div id='home' className='relative'>
 
         <NavComponent />
 
-        <div className=' h-[91vh] overflow-auto py-2 px-[10vw]'>
 
           <Switch>
 
@@ -62,11 +61,6 @@ function Home() {
           </Switch>
 
         </div>
-
-        
-
-
-    </div>
 
   );
 }

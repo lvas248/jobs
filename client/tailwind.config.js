@@ -38,7 +38,8 @@ module.exports = {
         'fade-in': 'fadeIn 750ms ease-in',
         'glide-in-top': 'glideInTop 01s ease-out',
         'glide-in-bottom': 'glideInBottom 01s ease-out',
-        'glide-out-right': 'glideOutRight 01s ease-out',
+        'glide-out-right': 'glideOutRight 0.6s ease-out',
+
       },
     },  },
   plugins: [],

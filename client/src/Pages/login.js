@@ -59,7 +59,9 @@ function Login() {
 
 
     return ( 
-            <form onSubmit={submitLoginObj} className='animate-fade-in relative'>
+
+        <div className='pt-[12vh] '>
+            <form onSubmit={submitLoginObj} className='animate-fade-in relative max-w-[600px] m-auto'>
                 
                 <Alert text={displayAlert.text} display={displayAlert.display}/>
                 <LoadingIcon status={sessionStatus} />
@@ -83,6 +85,7 @@ function Login() {
                     </div>) : <p>New? Signup <button onClick={()=>navigateTo('signup')} type='button' className='border font-bold rounded p-[2px]'>here</button></p>
 }                
             </form> 
+        </div>
         );
 }
 

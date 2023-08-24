@@ -9,7 +9,7 @@ function Filter({filterText, updateFilterText, selectedCategory, updateSelectedC
 
 
     return ( 
-        <div className='h-[8vh] flex flex-row z-10 gap-3 items-center'>
+        <div id='filter' className='h-fit flex flex-row gap-3 items-center'>
 
             <select
                 className='text-sm w-max max-w-[20vw] h-8'

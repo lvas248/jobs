@@ -24,26 +24,35 @@ function JobCard({job}) {
 
        return ( 
             <div 
-
-                className={`border p-2 hover:cursor-pointer relative flex flex-row sm:hover:border-yellow-300  sm:hover:border-1 shadow sm:hover:bg-slate-100`}>
+                className={`
+                    z-0
+                    relative flex flex-row
+                    border p-3 rounded-2xl shadow
+                    h-[200px] w-[300px]
+                    bg-slate-500    
+                    hover:cursor-pointer hover:scale-105
+                    sm:hover:border-yellow-300 sm:hover:border-1 sm:hover:bg-slate-400 
+                    `}>
                 
                 <div onClick={navigateToDetailedCard} className='hover:cursor-pointer w-[90%]'>
 
-                    <h1 className='sm:text-xl font-bold'>{job.civil_service_title}</h1>
-                    <p className='font-semibold text-slate-600'>{replaceWierdText(job.business_title)}</p>
-                    <p className='text-xs sm:text-sm'>Posted on: {formatDate(job.posting_date)}</p>
-                    <p className='text-xs sm:text-sm'>Salary Range: ${job.salary_range_from} to ${job.salary_range_to}</p>
-            
+                    <h1 className= 'text-gray-300 font-bold'>{job.civil_service_title}</h1>
+                    <p className='font-bold text-white text-sm'>{replaceWierdText(job.business_title)}</p>
+                    
+                    <p className='text-[12px] text-yellow-400'>Salary: ${job.salary_range_from} to ${job.salary_range_to}</p>
+                    
+                    <p className='absolute bottom-0 right-4 text-[10px] text-white float-right'>Posted on: {formatDate(job.posting_date)}</p>
+           
                 </div>
 
-                <div className='w-[10%] align-middle p-none pr-1 text-right relative'>
+                <div className='w-[10%] align-middle p-none pr-1 text-right '>
 
                     { saved ? (
-                        <p className='text-xs text-green-600'>saved</p>
+                        <p className='text-xs text-green-400 font-bold absolute top-0 right-4 '>saved</p>
                     ) : (
                         <>
                             <button onClick={submitJobSave} className={`peer border-none pt-none rounded-full mt-0 hover:bg-white ${!loggedIn && 'hidden'}`}>➕</button>
-                            <div className='absolute top-0 right-10 text-green-600  w-max text-xs text-left p-1 hidden sm:peer-hover:block z-20'>Add to my jobs</div>
+                            <div className='absolute top-0 right-10 text-green-600  bg-white rounded-full font-bold w-max text-xs text-left p-1 hidden sm:peer-hover:block'>Add to my jobs</div>
                         </>
                     ) }
                 </div>

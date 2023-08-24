@@ -21,22 +21,22 @@ function NavComponent() {
 
     return ( 
 
-            <nav className='bg-slate-200 grid '>
+            <nav className='bg-slate-500 grid drop-shadow text-green-600 font-bold h-fit w-full absolute top-0 z-20 '>
 
                 <div className='flex justify-between items-center'>
 
-                    <NavLink to='/'><h1 className='text-xl m-4'>NYC Job Hunt</h1></NavLink>
+                    <NavLink to='/'><h1 className='text-xl m-4 text-white'>NYC Job Hunt</h1></NavLink>
 
-                    <div className='hidden sm:block p-6'>
+                    <div className='hidden sm:block p-6 text-green-600'>
     
-                        <NavLink className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/'>All Jobs</NavLink>
+                        <NavLink activeClassName='underline bg-slate-300 rounded-2xl' className='p-6 hover:underline hover:bg-slate-300 hover:rounded-2xl ' exact to='/'>All Jobs</NavLink>
 
                         { loggedIn ?(
                         <>
-                            <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/user'>User</NavLink>
-                            <NavLink onClick={logoutUser} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/login'>Logout</NavLink>
+                            <NavLink onClick={toggleMenu} activeClassName='underline bg-slate-300 rounded-2xl' className='p-6 hover:underline hover:bg-slate-300 hover:rounded-2xl ' to='/user'>User</NavLink>
+                            <NavLink onClick={logoutUser} activeClassName='underline bg-slate-300 rounded-2xl' className='p-6 hover:underline hover:bg-slate-300 hover:rounded-2xl' to='/login'>Logout</NavLink>
                         </> ): (
-                        <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/login'>Login</NavLink>
+                        <NavLink onClick={toggleMenu} activeClassName='underline bg-slate-300 rounded-2xl' className='p-6 hover:underline hover:bg-slate-300 hover:rounded-2xl' to='/login'>Login</NavLink>
                 ) }
 
                     </div>
@@ -45,16 +45,16 @@ function NavComponent() {
                 
                 </div>
 
-                <div className={`absolute w-full top-[7vh] z-20 flex flex-col sm:hidden ${navbarToggle ? '':'hidden'}`}>
+                <div className={` flex flex-col bg-slate-500 sm:hidden ${navbarToggle ? '':'hidden'}`}>
     
-                    <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/'>Jobs</NavLink>
+                    <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300' to='/'>Jobs</NavLink>
 
                     { loggedIn ?(
                         <>
-                            <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/user'>User</NavLink>
-                            <NavLink onClick={logoutUser} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/login'>Logout</NavLink>
+                            <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300' to='/user'>User</NavLink>
+                            <NavLink onClick={logoutUser} className='p-6 hover:underline hover:bg-slate-300' to='/login'>Logout</NavLink>
                         </> ): (
-                        <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300 bg-slate-200' to='/login'>Login</NavLink>
+                        <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300' to='/login'>Login</NavLink>
                 ) }
                 
                 </div>
