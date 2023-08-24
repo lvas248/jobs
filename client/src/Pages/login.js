@@ -60,8 +60,9 @@ function Login() {
 
     return ( 
 
-        <div className='pt-[12vh] '>
-            <form onSubmit={submitLoginObj} className='animate-fade-in relative max-w-[600px] m-auto'>
+
+        <div className='grid pt-[15vh] px-5'>
+            <form onSubmit={submitLoginObj} className='animate-fade-in relative m-auto w-[80vw] max-w-[600px]'>
                 
                 <Alert text={displayAlert.text} display={displayAlert.display}/>
                 <LoadingIcon status={sessionStatus} />

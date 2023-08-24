@@ -38,16 +38,21 @@ function PasswordResetForm() {
     }
 
     return ( 
-        <form onSubmit={submitPasswordChange}>
+        <div className='grid pt-[15vh] px-5 w-[80vw] max-w-[600px] m-auto'>
 
-            <Alert text='Password reset has been successful.  Redirecting...' display={displayAlert}/>
+            <form onSubmit={submitPasswordChange}>
 
-            <input type='password' placeholder='new password' name='password' value={passwordObj.password} onChange={updatePasswordObj}/>
-            <input type='password' placeholder='confirm new password' name='password_confirmation' value={passwordObj.password_confirmation} onChange={updatePasswordObj} />
-            <div><p className='error'>{errors?.errors}</p></div>
-            <button>submit</button>
+                <Alert text='Password reset has been successful.  Redirecting...' display={displayAlert}/>
 
-        </form> );
+                <input type='password' placeholder='new password' name='password' value={passwordObj.password} onChange={updatePasswordObj}/>
+                <input type='password' placeholder='confirm new password' name='password_confirmation' value={passwordObj.password_confirmation} onChange={updatePasswordObj} />
+                <div><p className='error'>{errors?.errors}</p></div>
+                <button>submit</button>
+
+            </form> 
+
+        </div>
+        );
 }
 
 export default PasswordResetForm;

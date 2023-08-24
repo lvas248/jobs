@@ -76,34 +76,37 @@ function Signup() {
 
     return ( 
 
-        <form className={`animate-fade-in `}>
+        <div className='grid pt-[15vh] px-5'>
+            <form className={`animate-fade-in m-auto w-[80vw] max-w-[600px]`}>
 
-            <LoadingIcon status={sessionStatus} />
+                <LoadingIcon status={sessionStatus} />
 
-            <Alert text='An email has been sent with a confirmation link. Click to complete registration.' display={displayAlert} />
+                <Alert text='An email has been sent with a confirmation link. Click to complete registration.' display={displayAlert} />
 
-            <input type='email' name='email' placeholder='email' value={signupObj.email} onChange={updateSignupObj}/>
+                <input type='email' name='email' placeholder='email' value={signupObj.email} onChange={updateSignupObj}/>
+                
+                { renderEmailErrors }
+
+                <input type='password' name='password' placeholder='password' value={signupObj.password} onChange={updateSignupObj}/>
+                
+                { renderPasswordErrors }
+
+                <input type='password' name='password_confirmation' placeholder='password_confirmation' value={signupObj.password_confirmation} onChange={updateSignupObj}/>
+                
+                { renderPasswordConfirmationErrors }
+
+                <button
+                    className='bg-slate-200'
+                    onClick={submitSignup}
+                >sign up</button>
+
+                <div>
+                <p>Back to <button onClick={()=>navigateTo('login')} type='button' className='border font-bold rounded p-[2px]'>Login</button></p>            
+                    </div>
             
-            { renderEmailErrors }
+            </form>
 
-            <input type='password' name='password' placeholder='password' value={signupObj.password} onChange={updateSignupObj}/>
-            
-            { renderPasswordErrors }
-
-            <input type='password' name='password_confirmation' placeholder='password_confirmation' value={signupObj.password_confirmation} onChange={updateSignupObj}/>
-            
-            { renderPasswordConfirmationErrors }
-
-            <button
-                className='bg-slate-200'
-                onClick={submitSignup}
-            >sign up</button>
-
-            <div>
-               <p>Back to <button onClick={()=>navigateTo('login')} type='button' className='border font-bold rounded p-[2px]'>Login</button></p>            
-                </div>
-         
-        </form>
+        </div>
      );
 }
 

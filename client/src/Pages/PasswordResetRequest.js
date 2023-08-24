@@ -29,12 +29,16 @@ function PasswordResetRequest() {
     }
 
     return ( 
-        <form onSubmit={submitRequest} className='animate-fade-in grid]'>
-            <Alert text='A password reset link has been sent to the entered email.' display={displayAlert}/>
-            <input placeholder="email address..." value={email} onChange={e=>setEmail(e.target.value)} />
-            <button>submit</button>
-            <p className='error'>{error?.error}</p>
-        </form> 
+
+        <div className='pt-[15vh]'>
+            <form onSubmit={submitRequest} className='animate-fade-in m-auto w-[80vw] max-w-[600px]'>
+                <Alert text='A password reset link has been sent to the entered email.' display={displayAlert}/>
+                <input placeholder="email address..." value={email} onChange={e=>setEmail(e.target.value)} />
+                <button>submit</button>
+                <p className='error'>{error?.error}</p>
+            </form> 
+
+        </div>
         );
 }
 
