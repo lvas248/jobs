@@ -51,7 +51,7 @@ function SavedJobCard({ job }){
                             mt-0 peer/apply border-none font-bold text-xs   
                             ${ (removeClick || appliedClick) && 'hidden'}
                         `}>
-                            Mark Applied
+                            {job.applied ?'Un-mark applied':'Mark Applied' }
                     </button>
                     
                     <button 

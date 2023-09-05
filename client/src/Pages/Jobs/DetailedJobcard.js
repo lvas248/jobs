@@ -13,9 +13,8 @@ function DetailedJobCard(){
     const expired = new Date(job?.post_until) < new Date()
 
 
-
     return ( 
-        <div className='pt-[12vh] px-[4vw]'>
+        <div className='py-[12vh] px-[4vw] h-[84vh] sm:h-[95vh] overflow-y-auto'>
 
             <div className='grid grid-col sm:grid-cols-2 gap-1'>
                 <p className='text-xs font-bold'>Job ID: {job?.job_id}</p>
