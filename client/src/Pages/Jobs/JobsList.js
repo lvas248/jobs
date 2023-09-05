@@ -77,7 +77,7 @@ function JobsList() {
              </div>
 
 
-            <div ref={containerRef} className='overflow-auto relative h-[58vh] sm:h-[68vh] pt-4 flex flex-wrap gap-4 justify-center'>
+            <div ref={containerRef} className='overflow-auto relative h-[55vh] sm:h-[68vh] pt-4 flex flex-wrap gap-4 justify-center'>
                 { renderJobCards }
             </div>  
 
