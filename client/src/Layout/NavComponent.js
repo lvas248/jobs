@@ -45,7 +45,7 @@ function NavComponent() {
                 
                 </div>
 
-                <div className={`flex flex-col bg-slate-500 h-fit sm:hidden ${navbarToggle ? '':'hidden'}`}>
+                <div className={`flex flex-col bg-slate-500 h-fit z-20 sm:hidden ${navbarToggle ? '':'hidden'}`}>
     
                     <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300' to='/'>Jobs</NavLink>
 
