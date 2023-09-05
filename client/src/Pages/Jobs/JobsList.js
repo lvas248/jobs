@@ -77,11 +77,11 @@ function JobsList() {
              </div>
 
 
-            <div ref={containerRef} className='overflow-auto relative h-[68vh] pt-4 flex flex-wrap gap-4 justify-center'>
+            <div ref={containerRef} className='overflow-auto relative h-[58vh] sm:h-[68vh] pt-4 flex flex-wrap gap-4 justify-center'>
                 { renderJobCards }
             </div>  
 
-            <div className='flex items-center'>
+            <div className='flex items-center m-auto max-w-[200px]'>
                 <button className='m-auto p-2' onClick={decrementPage}>-</button>
                 <input className='w-[10vw] text-center' value={page} onChange={(e)=>setPage(e.target.value)}/>
                 <button className='m-auto p-2' onClick={incrementPage}>+</button>
