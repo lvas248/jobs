@@ -31,7 +31,6 @@ function Home() {
 
         <NavComponent />
 
-
           <Switch>
 
             <Route  path='/forgot_password'>

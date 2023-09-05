@@ -1,5 +1,3 @@
-import './Styles/App.css';
-
 import VerifyEmail from './Pages/VerifyEmail';
 import Home from './Home';
 import { Switch, Route } from 'react-router-dom'

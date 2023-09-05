@@ -21,7 +21,7 @@ function NavComponent() {
 
     return ( 
 
-            <nav className='bg-slate-500 grid drop-shadow text-green-600 font-bold h-min w-full absolute top-0 z-20 '>
+            <nav className='bg-slate-500 grid drop-shadow text-green-600 font-bold w-full absolute top-0 z-20 '>
 
                 <div className='flex justify-between items-center'>
 
@@ -45,7 +45,7 @@ function NavComponent() {
                 
                 </div>
 
-                <div className={`flex flex-col bg-slate-500 sm:hidden ${navbarToggle ? '':'hidden'}`}>
+                <div className={`flex flex-col bg-slate-500 h-fit sm:hidden ${navbarToggle ? '':'hidden'}`}>
     
                     <NavLink onClick={toggleMenu} className='p-6 hover:underline hover:bg-slate-300' to='/'>Jobs</NavLink>
 
