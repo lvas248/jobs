@@ -8,7 +8,7 @@ function App() {
  
 
   return (
-    <div id='App' className='h-screen'>
+    <div id='App' className='h-[100svh]'>
 
         <Switch>
 
