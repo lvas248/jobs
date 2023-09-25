@@ -17,8 +17,8 @@ function Login() {
   
 
     const [ loginObj, setLoginObj ] = useState({
-        email: '',
-        password: ''
+        email: 'demo@gmail.com',
+        password: 'password1'
     })
     const [ displayAlert, setDisplayAlert ] = useState({
         display: false,
@@ -67,7 +67,7 @@ function Login() {
                 <Alert text={displayAlert.text} display={displayAlert.display}/>
                 <LoadingIcon status={sessionStatus} />
 
-                <input type='text' placeholder='email' name='email' value={loginObj.username} onChange={updateLoginObj}  />
+                <input type='text' placeholder='email' name='email' value={loginObj.email} onChange={updateLoginObj}  />
 
                 <p className='error'>{errors?.email}</p>
 
