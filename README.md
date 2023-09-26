@@ -4,7 +4,7 @@
 Welcome to NYC Job Hunt, your one-stop app for finding and tracking available government jobs in New York City. Whether you're a seasoned professional or a recent graduate, this app will help you streamline your job hunt and keep track of the jobs you have already applied to.
 
 WALKTHROUGH: https://youtu.be/G8cSfCV-bnY
-DEMO: https://jobs-taeb.onrender.com
+DEMO: [https://jobs-b8os.onrender.com](https://jobs-b8os.onrender.com)
 
 ## Features
 
